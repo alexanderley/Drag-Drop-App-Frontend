@@ -1,0 +1,40 @@
+.draftContainer {
+  color: white;
+  font-family: arial;
+  display: flex;
+  background-color: rgb(14, 14, 14);
+  gap: 15px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 20px;
+
+  justify-content: center;
+}
+
+.draft {
+  background-color: rgb(18, 19, 23);
+  padding: 20px;
+  border-radius: 10px;
+  width: 150px;
+  margin: 15px;
+}
+
+.draftContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task {
+  background-color: rgb(40, 29, 81);
+  border-radius: 5px;
+  padding: 15px 15px;
+  margin: 10px;
+}
+
+.flexRow {
+  display: flex;
+  -webkit-box-align: start;
+  align-items: start;
+  flex-wrap: wrap;
+}

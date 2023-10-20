@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
+import BoardPage from "./pages/BoardPage/BoardPage";
 import ProjectListPage from "./pages/ProjectListPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import EditProjectPage from "./pages/EditProjectPage";
@@ -16,27 +17,58 @@ function App() {
     <div className="App">
       <Navbar />
 
-      <Routes>      
-        <Route path="/" element={<HomePage />} />
+      <Routes>
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<BoardPage />} />
 
         <Route
           path="/projects"
-          element={ <IsPrivate> <ProjectListPage /> </IsPrivate> } 
+          element={
+            <IsPrivate>
+              {" "}
+              <ProjectListPage />{" "}
+            </IsPrivate>
+          }
         />
 
         <Route
           path="/projects/:projectId"
-          element={ <IsPrivate> <ProjectDetailsPage /> </IsPrivate> }
+          element={
+            <IsPrivate>
+              {" "}
+              <ProjectDetailsPage />{" "}
+            </IsPrivate>
+          }
         />
 
         <Route
           path="/projects/edit/:projectId"
-          element={ <IsPrivate> <EditProjectPage /> </IsPrivate> } 
+          element={
+            <IsPrivate>
+              {" "}
+              <EditProjectPage />{" "}
+            </IsPrivate>
+          }
         />
-        
-        <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
-        <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
 
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              {" "}
+              <SignupPage />{" "}
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              {" "}
+              <LoginPage />{" "}
+            </IsAnon>
+          }
+        />
       </Routes>
     </div>
   );
