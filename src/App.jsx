@@ -18,15 +18,21 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
-        <Route path="/" element={<BoardPage />} />
-
+        <Route path="/" element={<HomePage />} />
         <Route
           path="/projects"
           element={
             <IsPrivate>
               {" "}
               <ProjectListPage />{" "}
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/boards"
+          element={
+            <IsPrivate>
+              <BoardPage id="boardPage" />
             </IsPrivate>
           }
         />
