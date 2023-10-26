@@ -30,12 +30,8 @@ function BoardPage() {
     fetchBoards();
   }, []);
 
-  const boardClickhandler = (e) => {
-    const clickedElement = e.target;
-    const boardTabIndex = Array.from(
-      clickedElement.parentNode.children
-    ).indexOf(clickedElement);
-    setActiveBoardIndex(boardTabIndex);
+  const handleBoardClick = (index) => {
+    setActiveBoardIndex(index);
   };
 
   return (
@@ -52,7 +48,7 @@ function BoardPage() {
                     activeBoardIndex === index ? "activeBoardTab" : ""
                   }`}
                   key={index}
-                  onClick={boardClickhandler}
+                  onClick={() => handleBoardClick(index)}
                 >
                   {board.title}
                 </div>

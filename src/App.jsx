@@ -23,7 +23,6 @@ function App() {
           path="/projects"
           element={
             <IsPrivate>
-              {" "}
               <ProjectListPage />{" "}
             </IsPrivate>
           }
