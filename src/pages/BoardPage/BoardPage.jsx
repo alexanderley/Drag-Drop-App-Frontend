@@ -1,22 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./BoardPage.css";
 
 import Board from "../../components/Board/Board";
 
 import CreateBoard from "../../components/Board/CreateBoard";
 import CreateDraft from "../../components/Board/CreateDraft";
+import axios from "axios";
+import API_URL from "../../../apiKey";
 
 function BoardPage() {
+  const [boards, setBoards] = useState([]);
+  const [activeBoardIndex, setActiveBoardIndex] = useState(0);
+
+  const storedToken = localStorage.getItem("authToken");
+
+  const fetchBoards = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/getBoards`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+      const data = response.data.boards;
+      setBoards(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchBoards();
+  }, []);
+
+  const boardClickhandler = (e) => {
+    const clickedElement = e.target;
+    const boardTabIndex = Array.from(
+      clickedElement.parentNode.children
+    ).indexOf(clickedElement);
+    setActiveBoardIndex(boardTabIndex);
+  };
+
   return (
     <>
-      <CreateBoard />
-      <CreateDraft />
+      <CreateBoard fetchBoards={fetchBoards} />
+      <CreateDraft fetchBoards={fetchBoards} />
       {/* <Board /> */}
       <div className="boardContainer">
         <div className="boardsSelection">
-          <div className="boardTab">Board 1</div>
-          <div className="boardTab">Board 2</div>
-          <div className="boardTab">Board 3</div>
+          {boards
+            ? boards.map((board, index) => (
+                <div
+                  className={`boardTab ${
+                    activeBoardIndex === index ? "activeBoardTab" : ""
+                  }`}
+                  key={index}
+                  onClick={boardClickhandler}
+                >
+                  {board.title}
+                </div>
+              ))
+            : ""}
         </div>
         <div className="boardOverview">
           <div className="boardDraftContainer">

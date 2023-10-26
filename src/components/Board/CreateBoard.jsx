@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import API_URL from "../../../apiKey";
 import axios from "axios";
 
-export default function CreateBoard() {
+export default function CreateBoard(props) {
   const [boardTitle, setBoardTitle] = useState("");
 
   const handleOnChange = (e) => {
@@ -18,11 +18,12 @@ export default function CreateBoard() {
 
     try {
       const requestBody = { title: boardTitle };
-      const response = await axios.post(`${API_URL}/board`, requestBody, {
+      const response = await axios.post(`${API_URL}/addBoard`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const data = response.data;
       console.log("axiosData: ", data);
+      props.fetchBoards();
     } catch (err) {
       console.error(err);
     }

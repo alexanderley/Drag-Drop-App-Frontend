@@ -2,6 +2,7 @@
 :root {
   --black: rgb(14, 14, 14);
   --darkgrey: rgb(18, 19, 23);
+  --light-purple: rgb(68, 51, 122);
   --purple: rgb(40, 29, 81);
   --green: rgb(10, 64, 44);
 }
@@ -77,6 +78,10 @@
   padding: 20px;
   border-radius: 5px;
   width: 100px;
+}
+
+.activeBoardTab {
+  background-color: var(--light-purple);
 }
 
 /* Styles for draft area */
