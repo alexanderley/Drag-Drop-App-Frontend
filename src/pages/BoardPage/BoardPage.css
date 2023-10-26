@@ -1,8 +1,16 @@
+/* Styles for the drag and Drop */
+:root {
+  --black: rgb(14, 14, 14);
+  --darkgrey: rgb(18, 19, 23);
+  --purple: rgb(40, 29, 81);
+  --green: rgb(10, 64, 44);
+}
+
 .draftContainer {
   color: white;
   font-family: arial;
   display: flex;
-  background-color: rgb(14, 14, 14);
+  background-color: var(--black);
   gap: 15px;
   width: 100%;
   padding: 40px;
@@ -12,7 +20,7 @@
 }
 
 .draft {
-  background-color: rgb(18, 19, 23);
+  background-color: var(--darkgrey);
   padding: 20px;
   border-radius: 10px;
   width: 150px;
@@ -26,7 +34,7 @@
 }
 
 .task {
-  background-color: rgb(40, 29, 81);
+  background-color: var(--purple);
   border-radius: 5px;
   padding: 15px 15px;
   margin: 10px;
@@ -37,4 +45,57 @@
   -webkit-box-align: start;
   align-items: start;
   flex-wrap: wrap;
+}
+
+/* syles for the boardSelector */
+.boardContainer {
+  background-color: var(--black);
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  color: white;
+  width: 100%;
+}
+
+.boardOverview {
+  width: 100%;
+}
+
+.boardsSelection {
+  background-color: var(--darkgrey);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.boardTab {
+  background-color: var(--purple);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100px;
+}
+
+/* Styles for draft area */
+.boardDraftContainer {
+  background-color: var(--darkgrey);
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  height: 100%;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.draftTab {
+  background-color: var(--green);
+  box-sizing: border-box;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100px;
+  height: 100%;
 }
