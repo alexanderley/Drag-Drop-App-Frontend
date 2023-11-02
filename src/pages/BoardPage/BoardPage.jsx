@@ -13,7 +13,7 @@ import API_URL from "../../../apiKey";
 function BoardPage() {
   const navigate = useNavigate();
   const [boards, setBoards] = useState([{ _id: "0" }]);
-  const [darfts, setDrafts] = useState([]);
+  const [drafts, setDrafts] = useState([{ title: "the title" }]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
   const [activeBoardId, setActiveBoardId] = useState("0");
 
@@ -35,14 +35,13 @@ function BoardPage() {
   };
 
   const fetchDrafts = async () => {
-    console.log("fetch drafts boardId 🎶: ", boardId);
-
     try {
       const response = await axios.get(`${API_URL}/getDrafts/${boardId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
-      const data = response.data;
-      const draftsData = data.darfts;
+      const data = response.data.drafts;
+      setDrafts(data);
+      console.log("the draft state ⚛: ", drafts);
       console.log("Drafts from server: 🐱‍🚀", data);
     } catch (err) {
       console.error(err);
@@ -67,6 +66,10 @@ function BoardPage() {
   useEffect(() => {
     fetchDrafts();
   }, [boardId]);
+
+  useEffect(() => {
+    console.log("drafts changed", drafts);
+  }, [drafts]);
 
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
@@ -97,9 +100,14 @@ function BoardPage() {
         </div>
         <div className="boardOverview">
           <div className="boardDraftContainer">
+            {drafts
+              ? drafts.map((draft) => (
+                  <div className="draftTab">{draft.title}</div>
+                ))
+              : ""}
+            {/* <div className="draftTab">Draft 1</div>
             <div className="draftTab">Draft 1</div>
-            <div className="draftTab">Draft 1</div>
-            <div className="draftTab">Draft 1</div>
+            <div className="draftTab">Draft 1</div> */}
           </div>
         </div>
       </div>
