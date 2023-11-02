@@ -42,6 +42,8 @@ function BoardPage() {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const data = response.data;
+      const draftsData = data.darfts;
+      console.log("Drafts from server: 🐱‍🚀", data);
     } catch (err) {
       console.error(err);
     }
