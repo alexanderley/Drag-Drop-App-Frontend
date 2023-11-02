@@ -3,14 +3,22 @@ import "./BoardPage.css";
 
 import Board from "../../components/Board/Board";
 
+import { useNavigate, useParams } from "react-router-dom";
+
 import CreateBoard from "../../components/Board/CreateBoard";
 import CreateDraft from "../../components/Board/CreateDraft";
 import axios from "axios";
 import API_URL from "../../../apiKey";
 
 function BoardPage() {
-  const [boards, setBoards] = useState([]);
+  const navigate = useNavigate();
+  const [boards, setBoards] = useState([{ _id: "0" }]);
+  const [darfts, setDrafts] = useState([]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
+  const [activeBoardId, setActiveBoardId] = useState("0");
+
+  const { boardId } = useParams();
+  console.log("boardId 🛹: ", boardId);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -26,12 +34,42 @@ function BoardPage() {
     }
   };
 
+  const fetchDrafts = async () => {
+    console.log("fetch drafts boardId 🎶: ", boardId);
+
+    try {
+      const response = await axios.get(`${API_URL}/getDrafts/${boardId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+      const data = response.data;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // fetch Boards
   useEffect(() => {
     fetchBoards();
   }, []);
 
+  useEffect(() => {
+    setActiveBoardId(boards[0]._id);
+  }, [boards]);
+
+  useEffect(() => {
+    if (boards.length > 0) {
+      navigate(`/boards/${activeBoardId}`);
+    }
+  }, [activeBoardId]);
+
+  useEffect(() => {
+    fetchDrafts();
+  }, [boardId]);
+
   const handleBoardClick = (index) => {
+    setActiveBoardId(boards[index]._id);
     setActiveBoardIndex(index);
+    fetchDrafts();
   };
 
   return (

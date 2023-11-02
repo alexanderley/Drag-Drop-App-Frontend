@@ -35,6 +35,14 @@ function App() {
             </IsPrivate>
           }
         />
+        <Route
+          path="/boards/:boardId"
+          element={
+            <IsPrivate>
+              <BoardPage id="boardPage" />
+            </IsPrivate>
+          }
+        />
 
         <Route
           path="/projects/:projectId"

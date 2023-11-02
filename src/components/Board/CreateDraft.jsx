@@ -12,7 +12,7 @@ export default function CreateDraft() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const boardId = "6536473117ee7826f3ac1f55";
+    const boardId = "6537e2235d108136d97004cc";
 
     const storedToken = localStorage.getItem("authToken");
 
