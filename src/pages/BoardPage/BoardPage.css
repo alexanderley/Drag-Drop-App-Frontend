@@ -5,6 +5,7 @@
   --light-purple: rgb(68, 51, 122);
   --purple: rgb(40, 29, 81);
   --green: rgb(10, 64, 44);
+  --dark-green: rgb(7, 40, 28);
 }
 
 .draftContainer {
@@ -99,8 +100,20 @@
   background-color: var(--green);
   box-sizing: border-box;
   color: white;
-  padding: 20px;
+  padding: 10px;
   border-radius: 5px;
-  width: 100px;
+  width: 150px;
   height: 100%;
+}
+
+.taskContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.taskTab {
+  background-color: var(--dark-green);
+  padding: 10px;
+  border-radius: 5px;
 }

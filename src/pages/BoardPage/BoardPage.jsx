@@ -13,12 +13,12 @@ import API_URL from "../../../apiKey";
 function BoardPage() {
   const navigate = useNavigate();
   const [boards, setBoards] = useState([{ _id: "0" }]);
-  const [drafts, setDrafts] = useState([{ title: "the title" }]);
+  const [drafts, setDrafts] = useState([]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
   const [activeBoardId, setActiveBoardId] = useState("0");
 
   const { boardId } = useParams();
-  console.log("boardId 🛹: ", boardId);
+  // console.log("boardId 🛹: ", boardId);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -41,7 +41,6 @@ function BoardPage() {
       });
       const data = response.data.drafts;
       setDrafts(data);
-      console.log("the draft state ⚛: ", drafts);
       console.log("Drafts from server: 🐱‍🚀", data);
     } catch (err) {
       console.error(err);
@@ -67,9 +66,9 @@ function BoardPage() {
     fetchDrafts();
   }, [boardId]);
 
-  useEffect(() => {
-    console.log("drafts changed", drafts);
-  }, [drafts]);
+  // useEffect(() => {
+  //   console.log("Drafts withs taks 🏓", drafts);
+  // }, [drafts]);
 
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
@@ -100,14 +99,35 @@ function BoardPage() {
         </div>
         <div className="boardOverview">
           <div className="boardDraftContainer">
-            {drafts
-              ? drafts.map((draft) => (
-                  <div className="draftTab">{draft.title}</div>
-                ))
-              : ""}
-            {/* <div className="draftTab">Draft 1</div>
+            {/* <div className="draftTab">
+              <h2>Todo</h2>
+              <div className="taskContainer">
+                <div className="taskTab">
+                  <span>1</span>
+                </div>
+                <div className="taskTab">s</div>
+                <div className="taskTab">Task 1</div>
+                <div className="AddTaskTab">
+                  <button>+</button>
+                </div>
+              </div>
+            </div>
             <div className="draftTab">Draft 1</div>
             <div className="draftTab">Draft 1</div> */}
+            {drafts
+              ? drafts.map((draft) => (
+                  <div className="draftTab">
+                    <h2>{draft.title}</h2>
+                    <div className="taskContainer">
+                      {draft.tasks.map((task) => {
+                        <div className="taskTab">
+                          <span>{task.title}</span>
+                        </div>;
+                      })}
+                    </div>
+                  </div>
+                ))
+              : ""}
           </div>
         </div>
       </div>
