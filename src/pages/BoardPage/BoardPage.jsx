@@ -116,13 +116,17 @@ function BoardPage() {
             <div className="draftTab">Draft 1</div> */}
             {drafts
               ? drafts.map((draft) => (
-                  <div className="draftTab">
+                  <div className="draftTab" key={draft._id}>
                     <h2>{draft.title}</h2>
                     <div className="taskContainer">
                       {draft.tasks.map((task) => {
-                        <div className="taskTab">
-                          <span>{task.title}</span>
-                        </div>;
+                        console.log("task: ", task.title);
+                        return (
+                          // Use the 'return' statement to return JSX elements
+                          <div className="taskTab" key={task._id}>
+                            <span>{task.title}</span>
+                          </div>
+                        );
                       })}
                     </div>
                   </div>
