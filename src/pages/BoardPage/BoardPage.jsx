@@ -74,6 +74,69 @@ function BoardPage() {
     fetchDrafts();
   };
 
+  const handleDragDrop = (results) => {
+    console.log("Results: ", results);
+
+    const { source, destination, type } = results;
+
+    if (!destination) return;
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    )
+      return;
+
+    if (type === "column") {
+      const reordereddraft = [...drafts];
+      const sourceIndex = source.index;
+      const destinationIndex = destination.index;
+
+      const [removedDraft] = reordereddraft.splice(sourceIndex, 1);
+
+      reordereddraft.splice(destinationIndex, 0, removedDraft);
+
+      return setDrafts(reordereddraft);
+    }
+
+    // 2.) add task change functionality
+    console.log("task drop", { destination, source });
+    const taskSourceIndex = drafts.findIndex(
+      (draft) => draft.id === source.droppableId
+    );
+
+    const taskDestinationIndex = drafts.findIndex(
+      (draft) => draft.id === destination.droppableId
+    );
+
+    const newSourceItems = [...drafts[taskSourceIndex].tasks];
+
+    const newDestinationItems =
+      source.droppableId !== destination.droppableId
+        ? [...drafts[taskDestinationIndex].tasks]
+        : newSourceItems;
+
+    console.log("newDestinationItems: ", newDestinationItems);
+
+    // remove the item from the old array
+    const [deletedItem] = newSourceItems.splice(source.index, 1);
+
+    newDestinationItems.splice(destination.index, 0, deletedItem);
+    const newDrafts = [...drafts];
+
+    newDrafts[taskSourceIndex] = {
+      ...drafts[taskSourceIndex],
+      tasks: newSourceItems,
+    };
+
+    newDrafts[taskDestinationIndex] = {
+      ...drafts[taskDestinationIndex],
+      tasks: newDestinationItems,
+    };
+
+    setDrafts(newDrafts);
+  };
+
   return (
     <>
       {/* <CreateBoard fetchBoards={fetchBoards} />
@@ -96,25 +159,88 @@ function BoardPage() {
             : ""}
         </div>
         <div className="boardOverview">
-          <div className="boardDraftContainer">
-            {drafts
-              ? drafts.map((draft) => (
-                  <div className="draftTab" key={draft._id}>
-                    <h2>{draft.title}</h2>
-                    <div className="taskContainer">
-                      {draft.tasks.map((task) => {
-                        console.log("task: ", task.title);
-                        return (
-                          <div className="taskTab" key={task._id}>
-                            <span>{task.title}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))
-              : ""}
-          </div>
+          <DragDropContext onDragEnd={handleDragDrop}>
+            <Droppable
+              droppableId="ROOT"
+              type="column"
+              direction="horizontal"
+              className="boardDraftContainer"
+            >
+              {(provided) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  className="flexRow"
+                >
+                  {/* {drafts
+                    ? drafts.map((draft, index) => (
+                        <Draggable
+                          draggableId={draft._id}
+                          key={draft._id}
+                          index={index}
+                          className="draftTab"
+                        >
+                          {(provided) => {
+                            <div
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                            >
+                              <div>
+                                <h2>{draft.title}</h2>
+                                <div className="taskContainer">
+                                  {draft.tasks.map((task) => {
+                                    console.log("task: ", task.title);
+                                    return (
+                                      <div className="taskTab" key={task._id}>
+                                        <span>{task.title}</span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            </div>;
+                          }}
+                        </Draggable>
+                      ))
+                    : ""} */}
+                  {drafts
+                    ? drafts.map((draft, index) => (
+                        <Draggable
+                          draggableId={draft._id}
+                          key={draft._id}
+                          index={index}
+                          className="draftTab"
+                        >
+                          {(provided) => (
+                            <div
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                            >
+                              <div>
+                                <h2>{draft.title}</h2>
+                                <div className="taskContainer">
+                                  {draft.tasks.map((task) => {
+                                    console.log("task: ", task.title);
+                                    return (
+                                      <div className="taskTab" key={task._id}>
+                                        <span>{task.title}</span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))
+                    : ""}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
     </>
