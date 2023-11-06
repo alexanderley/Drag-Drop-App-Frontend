@@ -172,38 +172,6 @@ function BoardPage() {
                   ref={provided.innerRef}
                   className="flexRow"
                 >
-                  {/* {drafts
-                    ? drafts.map((draft, index) => (
-                        <Draggable
-                          draggableId={draft._id}
-                          key={draft._id}
-                          index={index}
-                          className="draftTab"
-                        >
-                          {(provided) => {
-                            <div
-                              {...provided.dragHandleProps}
-                              {...provided.draggableProps}
-                              ref={provided.innerRef}
-                            >
-                              <div>
-                                <h2>{draft.title}</h2>
-                                <div className="taskContainer">
-                                  {draft.tasks.map((task) => {
-                                    console.log("task: ", task.title);
-                                    return (
-                                      <div className="taskTab" key={task._id}>
-                                        <span>{task.title}</span>
-                                      </div>
-                                    );
-                                  })}
-                                </div>
-                              </div>
-                            </div>;
-                          }}
-                        </Draggable>
-                      ))
-                    : ""} */}
                   {drafts
                     ? drafts.map((draft, index) => (
                         <Draggable
