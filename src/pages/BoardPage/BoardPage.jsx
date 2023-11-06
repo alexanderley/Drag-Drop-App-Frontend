@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./BoardPage.css";
-
-import Board from "../../components/Board/Board";
+import axios from "axios";
 
 import { useNavigate, useParams } from "react-router-dom";
 
 import CreateBoard from "../../components/Board/CreateBoard";
 import CreateDraft from "../../components/Board/CreateDraft";
-import axios from "axios";
+import Board from "../../components/Board/Board";
+
 import API_URL from "../../../apiKey";
+
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function BoardPage() {
   const navigate = useNavigate();
@@ -66,10 +68,6 @@ function BoardPage() {
     fetchDrafts();
   }, [boardId]);
 
-  // useEffect(() => {
-  //   console.log("Drafts withs taks 🏓", drafts);
-  // }, [drafts]);
-
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
     setActiveBoardIndex(index);
@@ -78,9 +76,9 @@ function BoardPage() {
 
   return (
     <>
-      <CreateBoard fetchBoards={fetchBoards} />
-      <CreateDraft fetchBoards={fetchBoards} />
-      {/* <Board /> */}
+      {/* <CreateBoard fetchBoards={fetchBoards} />
+      <CreateDraft fetchBoards={fetchBoards} /> */}
+      <Board />
       <div className="boardContainer">
         <div className="boardsSelection">
           {boards
@@ -99,21 +97,6 @@ function BoardPage() {
         </div>
         <div className="boardOverview">
           <div className="boardDraftContainer">
-            {/* <div className="draftTab">
-              <h2>Todo</h2>
-              <div className="taskContainer">
-                <div className="taskTab">
-                  <span>1</span>
-                </div>
-                <div className="taskTab">s</div>
-                <div className="taskTab">Task 1</div>
-                <div className="AddTaskTab">
-                  <button>+</button>
-                </div>
-              </div>
-            </div>
-            <div className="draftTab">Draft 1</div>
-            <div className="draftTab">Draft 1</div> */}
             {drafts
               ? drafts.map((draft) => (
                   <div className="draftTab" key={draft._id}>
@@ -122,7 +105,6 @@ function BoardPage() {
                       {draft.tasks.map((task) => {
                         console.log("task: ", task.title);
                         return (
-                          // Use the 'return' statement to return JSX elements
                           <div className="taskTab" key={task._id}>
                             <span>{task.title}</span>
                           </div>
