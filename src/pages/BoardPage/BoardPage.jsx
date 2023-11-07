@@ -102,11 +102,11 @@ function BoardPage() {
     // 2.) add task change functionality
     console.log("task drop", { destination, source });
     const taskSourceIndex = drafts.findIndex(
-      (draft) => draft.id === source.droppableId
+      (draft) => draft._id === source.droppableId
     );
 
     const taskDestinationIndex = drafts.findIndex(
-      (draft) => draft.id === destination.droppableId
+      (draft) => draft._id === destination.droppableId
     );
 
     const newSourceItems = [...drafts[taskSourceIndex].tasks];
@@ -178,26 +178,17 @@ function BoardPage() {
                           draggableId={draft._id}
                           key={draft._id}
                           index={index}
-                          className="draftTab"
                         >
                           {(provided) => (
                             <div
                               {...provided.dragHandleProps}
                               {...provided.draggableProps}
                               ref={provided.innerRef}
+                              className="draftTab"
                             >
                               <div>
                                 <h2>{draft.title}</h2>
-                                <div className="taskContainer">
-                                  {draft.tasks.map((task) => {
-                                    console.log("task: ", task.title);
-                                    return (
-                                      <div className="taskTab" key={task._id}>
-                                        <span>{task.title}</span>
-                                      </div>
-                                    );
-                                  })}
-                                </div>
+                                {<TasksList {...draft} />}
                               </div>
                             </div>
                           )}
@@ -212,6 +203,35 @@ function BoardPage() {
         </div>
       </div>
     </>
+  );
+}
+
+function TasksList({ name, tasks, _id }) {
+  return (
+    <Droppable droppableId={_id}>
+      {(provided) => (
+        <div {...provided.droppableProps} ref={provided.innerRef}>
+          <div className="taskContainer">
+            {tasks.map((task, index) => (
+              <Draggable draggableId={task._id} index={index} key={task._id}>
+                {(draggableProvided) => (
+                  <div
+                    key={index}
+                    {...draggableProvided.dragHandleProps}
+                    {...draggableProvided.draggableProps}
+                    ref={draggableProvided.innerRef}
+                    className="taskTab"
+                  >
+                    {task.title}
+                  </div>
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
+        </div>
+      )}
+    </Droppable>
   );
 }
 
