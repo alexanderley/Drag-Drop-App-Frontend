@@ -20,7 +20,7 @@ function BoardPage() {
   const [activeBoardId, setActiveBoardId] = useState("0");
 
   const { boardId } = useParams();
-  // console.log("boardId 🛹: ", boardId);
+  console.log("boardId 🛹: ", boardId);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -49,6 +49,22 @@ function BoardPage() {
     }
   };
 
+  const updateDrafts = async () => {
+    try {
+      if (drafts.length > 0) {
+        const response = await axios.put(
+          `${API_URL}/updateDrafts`,
+          { boardId, drafts },
+          {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          }
+        );
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // fetch Boards
   useEffect(() => {
     fetchBoards();
@@ -67,6 +83,12 @@ function BoardPage() {
   useEffect(() => {
     fetchDrafts();
   }, [boardId]);
+
+  // creates a new update when the drafts or task have been edited
+  useEffect(() => {
+    console.log("Draft update 🌹🌹🌹");
+    updateDrafts();
+  }, [drafts]);
 
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
