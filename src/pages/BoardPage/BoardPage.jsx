@@ -52,9 +52,18 @@ function BoardPage() {
   const updateDrafts = async () => {
     try {
       if (drafts.length > 0) {
+        // Extracting task IDs from each draft
+        const updatedDrafts = drafts.map((draft) => ({
+          _id: draft._id,
+          tasks: draft.tasks.map((task) => ({ _id: task._id })),
+        }));
+
+        console.log("Tasks as array of objects: ✨✨😃", updatedDrafts);
+
+        // Sending updatedDrafts back to the server
         const response = await axios.put(
           `${API_URL}/updateDrafts`,
-          { boardId, drafts },
+          { boardId, drafts: updatedDrafts },
           {
             headers: { Authorization: `Bearer ${storedToken}` },
           }
@@ -86,7 +95,7 @@ function BoardPage() {
 
   // creates a new update when the drafts or task have been edited
   useEffect(() => {
-    console.log("Draft update 🌹🌹🌹");
+    console.log("Draft update 🌹🌹🌹", drafts);
     updateDrafts();
   }, [drafts]);
 
