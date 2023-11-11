@@ -52,7 +52,6 @@ function BoardPage() {
   const updateDrafts = async () => {
     try {
       if (drafts.length > 0) {
-        // Extracting task IDs from each draft
         const updatedDrafts = drafts.map((draft) => ({
           _id: draft._id,
           tasks: draft.tasks.map((task) => ({ _id: task._id })),
@@ -60,7 +59,6 @@ function BoardPage() {
 
         console.log("Tasks as array of objects: ✨✨😃", updatedDrafts);
 
-        // Sending updatedDrafts back to the server
         const response = await axios.put(
           `${API_URL}/updateDrafts`,
           { boardId, drafts: updatedDrafts },
@@ -172,7 +170,7 @@ function BoardPage() {
     <>
       {/* <CreateBoard fetchBoards={fetchBoards} />
       <CreateDraft fetchBoards={fetchBoards} /> */}
-      <Board />
+      {/* <Board /> */}
       <div className="boardContainer">
         <div className="boardsSelection">
           {boards
