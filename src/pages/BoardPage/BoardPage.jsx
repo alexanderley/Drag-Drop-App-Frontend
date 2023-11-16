@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./BoardPage.css";
+import "./BoardPage.scss";
 import { BoardContext } from "../../context/board.context";
 
 import { useNavigate, useParams } from "react-router-dom";

@@ -135,7 +135,7 @@ export default function DraftList(props) {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="flexRow"
+            className="draftOverViewWrapper flexRow"
           >
             {drafts
               ? drafts.map((draft, index) => (

@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { BoardContext } from "../../context/board.context";
 
+import "./BoardSelection.scss";
+
 export default function BoardSelection() {
   const {
     boards,

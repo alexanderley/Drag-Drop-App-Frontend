@@ -17,6 +17,7 @@
   width: 100%;
   padding: 40px;
   border-radius: 20px;
+
   justify-content: center;
 }
 
@@ -41,20 +42,23 @@
   margin: 10px;
 }
 
-.flexRow {
-  display: flex;
-  align-items: start;
-}
+// .flexRow {
+//   display: flex;
+//   -webkit-box-align: start;
+//   align-items: start;
+// }
 
 .draftOverViewWrapper {
   height: 100%;
   overflow: scroll;
   display: flex;
+  -webkit-box-align: start;
   align-items: start;
-}
-.draftOverViewWrapper .draftTab {
-  width: 280px;
-  flex-shrink: 0;
+
+  .draftTab {
+    width: 280px;
+    flex-shrink: 0;
+  }
 }
 
 /* syles for the boardSelector */
@@ -77,7 +81,6 @@
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  width: -moz-fit-content;
   width: fit-content;
   border-radius: 5px;
 }
@@ -128,4 +131,4 @@
   background-color: var(--background-color);
   padding: 10px;
   border-radius: 5px;
-}/*# sourceMappingURL=BoardPage.css.map */
+}
