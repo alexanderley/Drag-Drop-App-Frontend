@@ -36,21 +36,14 @@
 }
 
 .task {
-  background-color: var(--purple);
   border-radius: 5px;
   padding: 15px 15px;
   margin: 10px;
 }
 
-// .flexRow {
-//   display: flex;
-//   -webkit-box-align: start;
-//   align-items: start;
-// }
-
 .draftOverViewWrapper {
-  height: 100%;
-  overflow: scroll;
+  // height: 100%;
+  // overflow: scroll;
   display: flex;
   -webkit-box-align: start;
   align-items: start;
@@ -64,7 +57,6 @@
 /* syles for the boardSelector */
 .boardContainer {
   background-color: var(--second-background-color);
-  padding: 20px;
   display: flex;
   gap: 10px;
   color: white;
@@ -73,28 +65,6 @@
 
 .boardOverview {
   width: 100%;
-}
-
-.boardsSelection {
-  background-color: var(--darkgrey);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  width: fit-content;
-  border-radius: 5px;
-}
-
-.boardTab {
-  background-color: var(--purple);
-  color: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 100px;
-}
-
-.activeBoardTab {
-  background-color: var(--light-purple);
 }
 
 /* Styles for draft area */
@@ -129,6 +99,6 @@
 
 .taskTab {
   background-color: var(--background-color);
-  padding: 10px;
-  border-radius: 5px;
+  padding: 25px 15px;
+  border-radius: var(--border-radius-std);
 }
