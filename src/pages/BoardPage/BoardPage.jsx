@@ -13,13 +13,13 @@ import TopNavigation from "../../components/TopNavigation/TopNavigation";
 
 function BoardPage() {
   const { boardId } = useParams();
+  const { fetchBoards } = useContext(BoardContext);
   console.log("boardId 🛹: ", boardId);
 
   return (
     <>
       {/* <CreateBoard fetchBoards={fetchBoards} />
       <CreateDraft fetchBoards={fetchBoards} /> */}
-      {/* <Board /> */}
       <TopNavigation />
       <div className="boardContainer">
         <BoardSelection />

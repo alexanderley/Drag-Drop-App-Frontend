@@ -20,7 +20,10 @@ export default function TasksList({ name, tasks, _id }) {
                     ref={draggableProvided.innerRef}
                     className="taskTab"
                   >
-                    {task.title}
+                    <div className="taskContentContainer">
+                      <span className="headingM"> {task.title}</span>
+                      <span className="bodyM subtasks">0 of 0 subtasks</span>
+                    </div>
                   </div>
                 )}
               </Draggable>
