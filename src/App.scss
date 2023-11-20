@@ -27,12 +27,12 @@
   // Theme
   --background-color: var(--dark-grey);
   --second-background-color: var(--very-dark-grey);
+  --box-shadow: 0px 4px 6px 0px #364e7e1a;
   --line-color: var(--lines-dark);
   --color: white;
 
   --buttonSecondaryBackgroundColor: var(--white);
   --buttonSecondaryColor: var(--violet);
-
   --line-thickness: 1px;
 }
 
@@ -51,6 +51,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--second-background-color);
+  color: var(--color);
 }
 
 // Scrollbar

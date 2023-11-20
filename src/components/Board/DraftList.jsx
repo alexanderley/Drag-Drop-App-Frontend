@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
+import "./DraftList.scss";
+
 import TasksList from "./TaskList";
 import { useNavigate, useParams } from "react-router-dom";
 import API_URL from "../../../apiKey";
@@ -152,7 +154,7 @@ export default function DraftList(props) {
                         className="draftTab"
                       >
                         <div>
-                          <h2>{draft.title}</h2>
+                          <h2 className="draftTitle headingS">{draft.title}</h2>
                           {<TasksList {...draft} />}
                         </div>
                       </div>

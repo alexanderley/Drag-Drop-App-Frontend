@@ -1,0 +1,16 @@
+.buttonPrimaryMobile {
+  background-color: var(--violet);
+  color: white;
+  padding: 13px 20px;
+  border-radius: 40px;
+  font-weight: var(--bold);
+
+  .mobilePlusIcon {
+    font-size: 20px;
+  }
+}
+
+.buttonPrimaryMobile:hover {
+  background-color: var(--light-violet);
+  cursor: pointer;
+}

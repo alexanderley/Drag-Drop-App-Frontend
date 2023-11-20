@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./TaskList.scss";
+
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function TasksList({ name, tasks, _id }) {

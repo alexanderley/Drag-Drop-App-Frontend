@@ -6,6 +6,7 @@ import { BoardContext } from "../../context/board.context";
 import iconBoard from "../../img/icon-board.svg";
 
 import "./BoardSelection.scss";
+import ThemeChanger from "../ThemeChanger/ThemeChanger";
 
 export default function BoardSelection() {
   const {
@@ -69,6 +70,7 @@ export default function BoardSelection() {
         </svg>
         <span>+ Create a new Board</span>
       </div>
+      <ThemeChanger />
     </div>
   );
 }

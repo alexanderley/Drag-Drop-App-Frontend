@@ -8,63 +8,18 @@
   --dark-green: rgb(7, 40, 28);
 }
 
-.draftContainer {
-  color: white;
-  font-family: arial;
-  display: flex;
-  background-color: var(--black);
-  gap: 15px;
-  width: 100%;
-  padding: 40px;
-  border-radius: 20px;
-
-  justify-content: center;
-}
-
-.draft {
-  background-color: var(--darkgrey);
-  padding: 20px;
-  border-radius: 10px;
-  width: 150px;
-  margin: 15px;
-}
-
-.draftContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.task {
-  border-radius: 5px;
-  padding: 15px 15px;
-  margin: 10px;
-}
-
-.draftOverViewWrapper {
-  // height: 100%;
-  // overflow: scroll;
-  display: flex;
-  -webkit-box-align: start;
-  align-items: start;
-
-  .draftTab {
-    width: 280px;
-    flex-shrink: 0;
-  }
-}
-
 /* syles for the boardSelector */
 .boardContainer {
   background-color: var(--second-background-color);
   display: flex;
   gap: 10px;
-  color: white;
+  color: var(--color);
   width: 100%;
 }
 
 .boardOverview {
   width: 100%;
+  padding: 25px;
 }
 
 /* Styles for draft area */
@@ -76,29 +31,4 @@
   height: 100%;
   gap: 10px;
   box-sizing: border-box;
-}
-
-.draftTab {
-  box-sizing: border-box;
-  background-color: grey;
-  padding-right: 25px;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  width: 150px;
-  height: 100%;
-  margin-right: 25px;
-  width: 280px;
-}
-
-.taskContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.taskTab {
-  background-color: var(--background-color);
-  padding: 25px 15px;
-  border-radius: var(--border-radius-std);
 }

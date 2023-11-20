@@ -1,0 +1,12 @@
+.buttonPrimaryL {
+  background-color: var(--violet);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 40px;
+  font-weight: var(--bold);
+}
+
+.buttonPrimaryL:hover {
+  background-color: var(--light-violet);
+  cursor: pointer;
+}

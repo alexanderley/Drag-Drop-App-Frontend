@@ -9,6 +9,7 @@ import CreateDraft from "../../components/Board/CreateDraft";
 
 import DraftList from "../../components/Board/DraftList";
 import BoardSelection from "../../components/Board/BoardSelection";
+import TopNavigation from "../../components/TopNavigation/TopNavigation";
 
 function BoardPage() {
   const { boardId } = useParams();
@@ -19,6 +20,7 @@ function BoardPage() {
       {/* <CreateBoard fetchBoards={fetchBoards} />
       <CreateDraft fetchBoards={fetchBoards} /> */}
       {/* <Board /> */}
+      <TopNavigation />
       <div className="boardContainer">
         <BoardSelection />
         <div className="boardOverview">
