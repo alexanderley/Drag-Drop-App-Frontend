@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./BoardPage.scss";
 import { BoardContext } from "../../context/board.context";
 
 import { useNavigate, useParams } from "react-router-dom";
+
+import "./BoardPage.scss";
 
 import CreateBoard from "../../components/Board/CreateBoard";
 import CreateDraft from "../../components/Board/CreateDraft";
@@ -17,7 +18,7 @@ function BoardPage() {
   console.log("boardId 🛹: ", boardId);
 
   return (
-    <>
+    <div className="boardPageWrapper">
       {/* <CreateBoard fetchBoards={fetchBoards} />
       <CreateDraft fetchBoards={fetchBoards} /> */}
       <TopNavigation />
@@ -27,7 +28,7 @@ function BoardPage() {
           <DraftList boardId={boardId} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

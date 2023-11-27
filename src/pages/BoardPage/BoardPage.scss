@@ -1,28 +1,17 @@
-/* Styles for the drag and Drop */
-:root {
-  --black: rgb(14, 14, 14);
-  --darkgrey: rgb(18, 19, 23);
-  --light-purple: rgb(68, 51, 122);
-  --purple: rgb(40, 29, 81);
-  --green: rgb(10, 64, 44);
-  --dark-green: rgb(7, 40, 28);
+.boardPageWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-html {
-  height: 100vh;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* syles for the boardSelector */
 .boardContainer {
   background-color: var(--second-background-color);
   display: flex;
   gap: 10px;
   color: var(--color);
   width: 100%;
+  flex-grow: 1;
 }
 
 .boardOverview {
