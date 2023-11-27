@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -8,10 +8,12 @@ import "./DraftList.scss";
 import TasksList from "./TaskList";
 import { useNavigate, useParams } from "react-router-dom";
 import API_URL from "../../../apiKey";
+import { SidebarContext } from "../../context/sidebar.context";
 
 export default function DraftList(props) {
   const navigate = useNavigate();
   const [drafts, setDrafts] = useState([]);
+  const { sideBarIsVisible } = useContext(SidebarContext);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -126,46 +128,54 @@ export default function DraftList(props) {
   };
 
   return (
-    <DragDropContext onDragEnd={handleDragDrop}>
-      <Droppable
-        droppableId="ROOT"
-        type="column"
-        direction="horizontal"
-        className="boardDraftContainer"
-      >
-        {(provided) => (
-          <div
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            className="draftOverViewWrapper"
-          >
-            {drafts
-              ? drafts.map((draft, index) => (
-                  <Draggable
-                    draggableId={draft._id}
-                    key={draft._id}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <div
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}
-                        ref={provided.innerRef}
-                        className="draftTab"
-                      >
-                        <div>
-                          <h2 className="draftTitle headingS">{draft.title}</h2>
-                          {<TasksList {...draft} />}
+    <div
+      className={`boardOverview ${
+        sideBarIsVisible ? "sideBarVisible" : "sideBarHidden"
+      }`}
+    >
+      <DragDropContext onDragEnd={handleDragDrop}>
+        <Droppable
+          droppableId="ROOT"
+          type="column"
+          direction="horizontal"
+          className="boardDraftContainer"
+        >
+          {(provided) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="draftOverViewWrapper"
+            >
+              {drafts
+                ? drafts.map((draft, index) => (
+                    <Draggable
+                      draggableId={draft._id}
+                      key={draft._id}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          {...provided.dragHandleProps}
+                          {...provided.draggableProps}
+                          ref={provided.innerRef}
+                          className="draftTab"
+                        >
+                          <div>
+                            <h2 className="draftTitle headingS">
+                              {draft.title}
+                            </h2>
+                            {<TasksList {...draft} />}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </Draggable>
-                ))
-              : ""}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+                      )}
+                    </Draggable>
+                  ))
+                : ""}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </div>
   );
 }

@@ -8,6 +8,7 @@ import { AuthProviderWrapper } from "./context/auth.context";
 import { BoardProviderWrapper } from "./context/board.context";
 import { ThemeProviderWrapper } from "./context/theme.context";
 import { ViewportProviderWrapper } from "./context/viewport.context";
+import { SidebarProviderWrapper } from "./context/sidebar.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -17,7 +18,9 @@ root.render(
       <ThemeProviderWrapper>
         <BoardProviderWrapper>
           <ViewportProviderWrapper>
-            <App />
+            <SidebarProviderWrapper>
+              <App />
+            </SidebarProviderWrapper>
           </ViewportProviderWrapper>
         </BoardProviderWrapper>
       </ThemeProviderWrapper>

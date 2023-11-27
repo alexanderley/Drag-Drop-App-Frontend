@@ -17,6 +17,8 @@ function BoardPage() {
   const { fetchBoards } = useContext(BoardContext);
   console.log("boardId 🛹: ", boardId);
 
+  const [sideMenuVisible, setSideMenuVisible] = useState(true);
+
   return (
     <div className="boardPageWrapper">
       {/* <CreateBoard fetchBoards={fetchBoards} />
@@ -24,10 +26,9 @@ function BoardPage() {
       <TopNavigation />
       <div className="boardContainer">
         <BoardSelection />
-        <div className="boardOverview">
-          <DraftList boardId={boardId} />
-        </div>
+        <DraftList boardId={boardId} />
       </div>
+      {/* <button className="makeVisibleButton">Make Visible</button> */}
     </div>
   );
 }
