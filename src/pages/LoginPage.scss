@@ -1,0 +1,116 @@
+a {
+  list-style: none;
+  color: var(--violet);
+}
+
+button,
+select {
+  padding: 5px 10px;
+  min-width: 50px;
+  margin: 5px;
+  font-size: 18px;
+}
+
+label {
+  width: 200px;
+  display: block;
+}
+
+input,
+textarea {
+  width: 200px;
+  padding: 10px;
+  display: inline-block;
+  margin: 10px;
+}
+
+nav {
+  background: var(--violet);
+  color: var(--color);
+  padding: 0px 20px;
+  box-shadow: 0px 1px 2px gray;
+  width: 100%;
+  padding: 5px;
+}
+
+nav li {
+  list-style: none;
+  color: var(--color);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.ProjectCard h3::after {
+  content: url("https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png");
+  margin-left: 5px;
+}
+
+.loginPageWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-direction: center;
+  .logoLogin {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .LoginPage {
+    margin: 0 auto;
+    margin-top: 40px;
+    border: var(--line-thickness) solid var(--line-color);
+    box-shadow: var(--box-shadow);
+
+    width: 400px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 4px;
+
+    svg {
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    h1 {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .loginButtonElements {
+      text-align: center;
+    }
+
+    .error-message {
+      color: var(--red);
+      text-align: center;
+    }
+  }
+
+  .EditProjectPage {
+    background-color: rgb(239, 196, 88);
+  }
+
+  .SignupPage,
+  .LoginPage {
+    background-color: #608dd5;
+  }
+
+  .LoginPage {
+    background-color: var(--dark-grey);
+  }
+
+  .LoginPage form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .AddTask button,
+  .AddProject button {
+    display: block;
+  }
+
+  .TaskCard {
+    background-color: #dfeef9;
+  }
+}

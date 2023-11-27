@@ -8,6 +8,14 @@
   --dark-green: rgb(7, 40, 28);
 }
 
+html {
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 /* syles for the boardSelector */
 .boardContainer {
   background-color: var(--second-background-color);
@@ -28,7 +36,6 @@
   padding: 20px;
   border-radius: 5px;
   display: flex;
-  height: 100%;
   gap: 10px;
   box-sizing: border-box;
 }
