@@ -16,6 +16,7 @@ export default function BoardSelection() {
     setActiveBoardIndex,
     activeBoardId,
     setActiveBoardId,
+    setActiveBoardTitle,
     fetchBoards,
   } = useContext(BoardContext);
   const { sideBarIsVisible, setVisibilityHandler } = useContext(SidebarContext);
@@ -42,6 +43,8 @@ export default function BoardSelection() {
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
     setActiveBoardIndex(index);
+    // setActiveBoardId(boards[index]._id)
+    setActiveBoardTitle(boards[index].title);
     fetchDrafts();
   };
 

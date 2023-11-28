@@ -5,9 +5,11 @@ import ButtonPrimaryL from "../Ui/ButtonPrimaryL";
 import "./TopNavigation.scss";
 import { ViewportContext } from "../../context/viewport.context";
 import ButtonPrimaryMobile from "../Ui/ButtonPrimaryMobile";
+import { BoardContext } from "../../context/board.context";
 
 export default function TopNavigation() {
   const { viewportWidth, viewportBreakpoint } = useContext(ViewportContext);
+  const { activeBoardTitle } = useContext(BoardContext);
 
   const handleAddNewTask = () => {};
 
@@ -31,7 +33,7 @@ export default function TopNavigation() {
       </div>
       <div class="addNewTaskContainer">
         <div class="headlineDropDownMenuContainer">
-          <h1>Marketing Plan </h1>
+          <h1>{activeBoardTitle} </h1>
           {/* <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
             <path
               stroke="#635FC7"

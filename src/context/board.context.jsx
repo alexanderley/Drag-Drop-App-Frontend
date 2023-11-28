@@ -10,6 +10,7 @@ function BoardProviderWrapper(props) {
   const [boards, setBoards] = useState([{ _id: "0" }]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
   const [activeBoardId, setActiveBoardId] = useState("0");
+  const [activeBoardTitle, setActiveBoardTitle] = useState("");
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -31,6 +32,7 @@ function BoardProviderWrapper(props) {
 
   useEffect(() => {
     setActiveBoardId(boards[0]._id);
+    setActiveBoardTitle(boards[0].title);
   }, [boards]);
 
   useEffect(() => {
@@ -54,6 +56,8 @@ function BoardProviderWrapper(props) {
         setActiveBoardIndex,
         activeBoardId,
         setActiveBoardId,
+        activeBoardTitle,
+        setActiveBoardTitle,
         fetchBoards,
       }}
     >
