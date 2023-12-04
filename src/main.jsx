@@ -9,6 +9,7 @@ import { BoardProviderWrapper } from "./context/board.context";
 import { ThemeProviderWrapper } from "./context/theme.context";
 import { ViewportProviderWrapper } from "./context/viewport.context";
 import { SidebarProviderWrapper } from "./context/sidebar.context";
+import { ModalProviderWrapper } from "./context/modal.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -19,7 +20,9 @@ root.render(
         <BoardProviderWrapper>
           <ViewportProviderWrapper>
             <SidebarProviderWrapper>
-              <App />
+              <ModalProviderWrapper>
+                <App />
+              </ModalProviderWrapper>
             </SidebarProviderWrapper>
           </ViewportProviderWrapper>
         </BoardProviderWrapper>

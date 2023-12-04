@@ -6,14 +6,14 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./DraftList.scss";
 
 import TasksList from "./TaskList";
-import { useNavigate, useParams } from "react-router-dom";
 import API_URL from "../../../apiKey";
 import { SidebarContext } from "../../context/sidebar.context";
+import { ModalContext } from "../../context/modal.context";
 
 export default function DraftList(props) {
-  const navigate = useNavigate();
   const [drafts, setDrafts] = useState([]);
   const { sideBarIsVisible } = useContext(SidebarContext);
+  const { setAddNewTaskFormIsVisible } = useContext(ModalContext);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -127,6 +127,10 @@ export default function DraftList(props) {
     }
   };
 
+  const addDraftClickHandler = async () => {
+    setAddNewTaskFormIsVisible(true);
+  };
+
   return (
     <div
       className={`boardOverview ${
@@ -176,6 +180,9 @@ export default function DraftList(props) {
           )}
         </Droppable>
       </DragDropContext>
+      <div className="addNewDraftContainer" onClick={addDraftClickHandler}>
+        <h1>+ New Draft</h1>
+      </div>
     </div>
   );
 }

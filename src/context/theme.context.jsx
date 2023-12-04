@@ -13,13 +13,13 @@ function ThemeProviderWrapper(props) {
         "--second-background-color",
         "var(--background-light)"
       );
-      root.style.setProperty("--color", "--black");
+      root.style.setProperty("--color", "var(--black)");
       root.style.setProperty("--line-color", "var(--lines-light");
       root.style.setProperty(
         "--buttonSecondaryBackgroundColor",
         "var(--very-light-violet)"
       );
-      // root.style.setProperty("--box-shadow", "red");
+      root.style.setProperty("--gradient", "var(--light-gradient)");
     } else {
       root.style.setProperty("--background-color", "var(--dark-grey)");
       root.style.setProperty(
@@ -32,6 +32,7 @@ function ThemeProviderWrapper(props) {
         "--buttonSecondaryBackgroundColor",
         "var(--white)"
       );
+      root.style.setProperty("--gradient", "var(--dark-gradient)");
     }
   }, [isLightTheme]);
 

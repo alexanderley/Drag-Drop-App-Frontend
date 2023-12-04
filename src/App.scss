@@ -16,6 +16,10 @@
   --background-light: #f4f7fd;
   --white: white;
 
+  // Gradient
+  --dark-gradient: linear-gradient(to bottom, #2b2c37, #2b2c3780);
+  --light-gradient: linear-gradient(to bottom, #e9effa, #e9effa80);
+
   /* Fonts  */
   --font-family: "Plus Jakarta Sans", sans-serif;
   --medium: 500;
@@ -30,6 +34,7 @@
   --box-shadow: 0px 4px 6px 0px #364e7e1a;
   --line-color: var(--lines-dark);
   --color: white;
+  --gradient: var(--gradient);
 
   --buttonSecondaryBackgroundColor: var(--white);
   --buttonSecondaryColor: var(--violet);
