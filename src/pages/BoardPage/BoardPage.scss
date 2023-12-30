@@ -8,18 +8,27 @@
 .boardContainer {
   background-color: var(--second-background-color);
   display: flex;
-  gap: 10px;
   color: var(--color);
   width: 100%;
   flex-grow: 1;
+
+  width: 100vw;
+  width: calc(100vw + 300px);
+  // transition: width 0.3s;
 }
+
+// .boardContainerExtendet {
+//   width: calc(100vw + 300px);
+// }
 
 .boardOverview {
   width: 100%;
   padding: 25px;
   position: relative;
-
   display: flex;
+
+  overflow-y: hidden;
+  overflow-x: scroll;
 }
 
 /* Styles for draft area */

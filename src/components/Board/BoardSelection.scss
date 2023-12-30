@@ -1,4 +1,6 @@
 .boardsSelection {
+  overflow: auto;
+
   background-color: var(--background-color);
   border-right: 2px solid var(--line-color);
   height: 100%;

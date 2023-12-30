@@ -43,7 +43,7 @@
 
 html {
   font-family: var(--font-family);
-  overflow: hidden;
+  // overflow: hidden;
   width: 100vw;
   font-size: 16px;
   font-weight: bold;
@@ -52,6 +52,7 @@ html {
 body {
   width: 100%;
   overflow: hidden;
+
   margin: 0;
   padding: 0;
   background-color: var(--second-background-color);

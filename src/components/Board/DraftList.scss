@@ -1,4 +1,6 @@
 .boardOverview {
+  overflow-x: scroll;
+
   .draftContainer {
     width: 100%;
     display: flex;
@@ -21,7 +23,6 @@
 
     .draftTab {
       box-sizing: border-box;
-      // padding-right: 25px;
       border-radius: 5px;
       width: 150px;
       height: 100%;
@@ -38,7 +39,7 @@
   .addNewDraftContainer {
     background: var(--gradient);
     margin-top: 40px;
-    width: 260px;
+    min-width: 270px;
     border-radius: var(--border-radius-std);
     display: flex;
     justify-content: center;

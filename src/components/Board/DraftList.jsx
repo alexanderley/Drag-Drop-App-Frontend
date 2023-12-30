@@ -143,6 +143,7 @@ export default function DraftList(props) {
           type="column"
           direction="horizontal"
           className="boardDraftContainer"
+          style={{ height: "100%" }}
         >
           {(provided) => (
             <div
@@ -164,7 +165,7 @@ export default function DraftList(props) {
                           ref={provided.innerRef}
                           className="draftTab"
                         >
-                          <div>
+                          <div style={{ height: "100%" }}>
                             <h2 className="draftTitle headingS">
                               {draft.title}
                             </h2>

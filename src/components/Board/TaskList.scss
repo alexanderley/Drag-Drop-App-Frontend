@@ -1,4 +1,9 @@
 .taskContainer {
+  border: 1px solid var(--second-background-color);
+  border-radius: var(--border-radius-std);
+  height: 100%;
+  // transition: border 0.3s ease-in-out;
+
   .taskTab {
     background-color: var(--background-color);
     padding: 25px 15px;
@@ -6,6 +11,14 @@
     margin-bottom: 20px;
     box-shadow: var(--box-shadow);
     color: var(--color);
+    opacity: 1;
+
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      // background-color: var(--dark-grey);
+      opacity: 0.5;
+    }
 
     .taskContentContainer {
       display: flex;
@@ -17,4 +30,12 @@
       }
     }
   }
+}
+
+.emptyTaskList {
+  height: calc(100% - 40px);
+  width: 100%;
+  border-radius: var(--border-radius-std);
+  box-shadow: var(--box-shadow);
+  border: var(--line-thickness) solid var(--line-color);
 }

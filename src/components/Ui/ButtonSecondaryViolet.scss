@@ -1,0 +1,12 @@
+.buttonSecondaryViolet {
+  padding: 13px;
+  border-radius: 30px;
+  width: 100%;
+  font-weight: var(--bold);
+  color: white;
+  background-color: var(--violet);
+}
+
+.buttonSecondaryViolet:hover {
+  background-color: var(--light-violet);
+}
