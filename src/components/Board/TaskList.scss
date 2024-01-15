@@ -30,6 +30,20 @@
       }
     }
   }
+
+  .addTaskButton {
+    text-align: center;
+    padding: 25px;
+    // border: var(--line-thickness) solid var(--line-color);
+    border-radius: var(--border-radius-std);
+    background-color: var(--violet);
+    transition: background-color 0.3s ease-in-out;
+
+    &.addTaskButton:hover {
+      cursor: pointer;
+      background-color: var(--light-violet);
+    }
+  }
 }
 
 .emptyTaskList {

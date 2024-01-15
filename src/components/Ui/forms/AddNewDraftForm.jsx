@@ -10,12 +10,11 @@ import { ModalContext } from "../../../context/modal.context";
 
 export default function AddNewDraftForm() {
   const { boardId } = useParams();
-  const { setAddNewTaskFormIsVisible } = useContext(ModalContext);
+  const { setAddNewDraftFormIsVisible } = useContext(ModalContext);
   const [draftTitle, setDraftTitle] = useState("");
 
   const addDraftFormSubHandler = async (e) => {
     e.preventDefault();
-    console.log("Added draft");
 
     const storedToken = localStorage.getItem("authToken");
 
@@ -25,7 +24,7 @@ export default function AddNewDraftForm() {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const data = response.data;
-      setAddNewTaskFormIsVisible(false);
+      setAddNewDraftFormIsVisible(false);
       console.log("axiosData: ", data);
     } catch (err) {
       console.error(err);

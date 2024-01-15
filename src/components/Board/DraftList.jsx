@@ -13,7 +13,8 @@ import { ModalContext } from "../../context/modal.context";
 export default function DraftList(props) {
   const [drafts, setDrafts] = useState([]);
   const { sideBarIsVisible } = useContext(SidebarContext);
-  const { setAddNewTaskFormIsVisible } = useContext(ModalContext);
+  const { addNewDraftFormIsVisible, setAddNewDraftFormIsVisible } =
+    useContext(ModalContext);
 
   const storedToken = localStorage.getItem("authToken");
 
@@ -128,7 +129,9 @@ export default function DraftList(props) {
   };
 
   const addDraftClickHandler = async () => {
-    setAddNewTaskFormIsVisible(true);
+    console.log("Show the Modal");
+    setAddNewDraftFormIsVisible(true);
+    console.log("Is Visible?: ", addNewDraftFormIsVisible);
   };
 
   return (

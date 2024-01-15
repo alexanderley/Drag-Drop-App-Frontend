@@ -39,15 +39,28 @@ import "./Modal.scss";
 import { ModalContext } from "../../../context/modal.context";
 
 export default function Modal(props) {
-  const { addNewTaskFormIsVisible, setAddNewTaskFormIsVisible } =
-    useContext(ModalContext);
+  const {
+    addNewTaskFormIsVisible,
+    setAddNewTaskFormIsVisible,
+    addNewDraftFormIsVisible,
+    setAddNewDraftFormIsVisible,
+  } = useContext(ModalContext);
 
   const handleModalClose = () => {
     setAddNewTaskFormIsVisible(false);
+    setAddNewDraftFormIsVisible(false);
   };
 
+  // return ReactDOM.createPortal(
+  //   <div className={`modal ${addNewDraftFormIsVisible ? "show" : "hide"}`}>
+  //     <div className="modalContent">{props.children}</div>
+  //     <div className="modalBackground" onClick={handleModalClose}></div>
+  //   </div>,
+  //   document.body
+  // );
+
   return ReactDOM.createPortal(
-    <div className={`modal ${addNewTaskFormIsVisible ? "show" : "hide"}`}>
+    <div className="modal show">
       <div className="modalContent">{props.children}</div>
       <div className="modalBackground" onClick={handleModalClose}></div>
     </div>,

@@ -5,9 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import "./BoardPage.scss";
 
-import CreateBoard from "../../components/Board/CreateBoard";
-import CreateDraft from "../../components/Board/CreateDraft";
-
 import DraftList from "../../components/Board/DraftList";
 import BoardSelection from "../../components/Board/BoardSelection";
 import TopNavigation from "../../components/TopNavigation/TopNavigation";
@@ -15,10 +12,12 @@ import TopNavigation from "../../components/TopNavigation/TopNavigation";
 import AddNewDraftForm from "../../components/Ui/forms/AddNewDraftForm";
 import { ModalContext } from "../../context/modal.context";
 import { SidebarContext } from "../../context/sidebar.context";
+import AddNewTaskForm from "../../components/Ui/forms/AddNewTaskForm";
 
 function BoardPage() {
   const { boardId } = useParams();
-  const { addNewTaskFormIsVisible } = useContext(ModalContext);
+  const { addNewDraftFormIsVisible, addNewTaskFormIsVisible } =
+    useContext(ModalContext);
   const { sideBarIsVisible } = useContext(SidebarContext);
 
   console.log("boardId 🛹: ", boardId);
@@ -27,9 +26,9 @@ function BoardPage() {
 
   return (
     <div className="boardPageWrapper">
-      {/* <CreateBoard fetchBoards={fetchBoards} />
-      <CreateDraft fetchBoards={fetchBoards} /> */}
-      {addNewTaskFormIsVisible ? <AddNewDraftForm /> : ""}
+      {addNewDraftFormIsVisible ? <AddNewDraftForm /> : ""}
+      {addNewTaskFormIsVisible ? <AddNewTaskForm /> : ""}
+      {/* {addNewTaskFormIsVisible ? <AddNewDraftForm /> : ""} */}
       <TopNavigation />
       <div
         className={`boardContainer ${

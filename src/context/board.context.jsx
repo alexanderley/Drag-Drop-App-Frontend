@@ -12,6 +12,8 @@ function BoardProviderWrapper(props) {
   const [activeBoardId, setActiveBoardId] = useState("0");
   const [activeBoardTitle, setActiveBoardTitle] = useState("");
 
+  const [activeTaskId, setActiveTaskId] = useState("0");
+
   const storedToken = localStorage.getItem("authToken");
 
   const fetchBoards = async () => {
@@ -59,6 +61,8 @@ function BoardProviderWrapper(props) {
         activeBoardTitle,
         setActiveBoardTitle,
         fetchBoards,
+        activeTaskId,
+        setActiveTaskId,
       }}
     >
       {props.children}
