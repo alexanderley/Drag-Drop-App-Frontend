@@ -4,13 +4,17 @@ import "./TaskList.scss";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { ModalContext } from "../../context/modal.context";
+import { BoardContext } from "../../context/board.context";
 
 export default function TasksList({ name, tasks, _id }) {
   const { setAddNewTaskFormIsVisible } = useContext(ModalContext);
+  const { boards, setBoard, activeBoardId, activeDraftId, setActiveDraftId } =
+    useContext(BoardContext);
+  // console.log("😘 _id:", _id);
 
   const addTaskClickHandler = () => {
-    console.log("Open Modal");
     setAddNewTaskFormIsVisible(true);
+    setActiveDraftId(_id);
   };
 
   return (

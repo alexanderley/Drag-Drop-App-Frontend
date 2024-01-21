@@ -25,6 +25,7 @@ export default function AddNewDraftForm() {
       });
       const data = response.data;
       setAddNewDraftFormIsVisible(false);
+
       console.log("axiosData: ", data);
     } catch (err) {
       console.error(err);
