@@ -7,6 +7,7 @@ import Modal from "../modals/Modal";
 import ButtonSecondary from "../../Ui/ButttonSecondaryViolet";
 import { ModalContext } from "../../../context/modal.context";
 import { BoardContext } from "../../../context/board.context";
+import TasksList from "../../Board/TaskList";
 
 export default function AddNewTaskForm() {
   const [taskTitle, setTaskTitle] = useState("");
@@ -28,12 +29,14 @@ export default function AddNewTaskForm() {
       (board) => board._id === activeBoardId
     );
 
-    const draftsOfActiveBoard = boards[0].drafts;
+    const draftsOfActiveBoard = boards[indexOfActiveBoard].drafts;
     console.log("Drafts of active Board:", draftsOfActiveBoard);
 
-    // const activeBoard = boards[indexOfActiveBoard];
-
-    const indexOfActiveDraft = draftsOfActiveBoard.indexOf(activeDraftId);
+    // const indexOfActiveDraft = draftsOfActiveBoard.indexOf(activeDraftId);
+    const indexOfActiveDraft = draftsOfActiveBoard.findIndex(
+      (draft) => draft._id === activeDraftId
+    );
+    console.log("IndexOfActiveDraft: ", indexOfActiveDraft);
 
     console.log(
       "These are our new values: 😘✨",
@@ -44,7 +47,26 @@ export default function AddNewTaskForm() {
     // check if the active board could be found
     if (indexOfActiveBoard !== -1 && indexOfActiveDraft !== -1) {
       console.log("Board and Draft could be found 👶");
-      const newData = boards[indexOfActiveBoard].drafts[indexOfActiveDraft];
+      // const newData = boards[indexOfActiveBoard].drafts[indexOfActiveDraft];
+
+      // const boardsNewDraft = boards[indexOfActiveBoard].drafts[
+      //   indexOfActiveDraft
+      // ].tasks.push({ _id: "emptyId", title: taskTitle });
+
+      // console.log(boardsNewDraft);
+      // setBoards(boardsNewDraft);
+
+      const updatedBoards = [...boards];
+
+      const updatedTasks = [
+        ...updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks,
+      ];
+
+      updatedTasks.push({ _id: "emptyId", title: taskTitle });
+
+      console.log(updatedTasks);
+
+      setBoards(updatedBoards);
     }
 
     // const storedToken = localStorage.getItem("authToken");
@@ -62,6 +84,43 @@ export default function AddNewTaskForm() {
     // }
     // console.log("New Task send to the server!");
   };
+
+  // const addTaskFormHandler = async (e) => {
+  //   e.preventDefault();
+
+  //   const indexOfActiveBoard = boards.findIndex(
+  //     (board) => board._id === activeBoardId
+  //   );
+
+  //   const draftsOfActiveBoard = boards[indexOfActiveBoard].drafts;
+  //   const indexOfActiveDraft = draftsOfActiveBoard.findIndex(
+  //     (draft) => draft._id === activeDraftId
+  //   );
+
+  //   // check if the active board could be found
+  //   if (indexOfActiveBoard !== -1 && indexOfActiveDraft !== -1) {
+  //     // Create a copy of the current state
+  //     const updatedBoards = [...boards];
+
+  //     // Create a copy of the tasks array in the selected draft
+  //     const updatedTasks = [
+  //       ...updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks,
+  //     ];
+
+  //     // Add the new task to the copied tasks array
+  //     updatedTasks.push({ _id: "emptyId", title: taskTitle });
+
+  //     // Update the tasks array in the copied draft
+  //     updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks =
+  //       updatedTasks;
+
+  //     // Update the state with the modified copy
+  //     setBoards(updatedBoards);
+  //   }
+
+  //   setAddNewDraftFormIsVisible(false);
+  //   setActiveDraftId("");
+  // };
 
   const handleTaskTitleChange = (e) => {
     setTaskTitle(e.target.value);

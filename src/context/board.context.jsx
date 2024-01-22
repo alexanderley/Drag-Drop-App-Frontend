@@ -11,7 +11,7 @@ function BoardProviderWrapper(props) {
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
   const [activeBoardId, setActiveBoardId] = useState("0");
   const [activeBoardTitle, setActiveBoardTitle] = useState("");
-  const [activeDraftId, setActiveDraftId] = useState("Test");
+  const [activeDraftId, setActiveDraftId] = useState("0");
 
   const storedToken = localStorage.getItem("authToken");
 

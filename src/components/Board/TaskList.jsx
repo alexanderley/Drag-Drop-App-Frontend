@@ -13,6 +13,7 @@ export default function TasksList({ name, tasks, _id }) {
   // console.log("😘 _id:", _id);
 
   const addTaskClickHandler = () => {
+    console.log("This is the id 🤢", _id);
     setAddNewTaskFormIsVisible(true);
     setActiveDraftId(_id);
   };
