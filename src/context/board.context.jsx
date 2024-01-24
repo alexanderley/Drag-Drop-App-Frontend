@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const BoardContext = React.createContext();
 
 function BoardProviderWrapper(props) {
-  const [hasBoardsChanged, setHasBoardsChanged] = useState(false);
+  const [boardBeenModified, setboardBeenModified] = useState(false);
   const navigate = useNavigate();
   const [boards, setBoards] = useState([{ _id: 0 }]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
@@ -23,35 +23,35 @@ function BoardProviderWrapper(props) {
       });
       const data = response.data.boards;
       setBoards(data);
+      setboardBeenModified(true);
     } catch (err) {
       console.error(err);
     }
   };
 
   useEffect(() => {
-    setActiveBoardId(boards[0]._id);
+    console.log("set active ID 🎂🎂🎂🎂🎂🎂🎂");
+    if (boards.length > 0) {
+      navigate(`/boards/${activeBoardId}`);
+    }
+  }, [activeBoardId]);
+
+  useEffect(() => {
     fetchBoards();
+    // setActiveBoardId(boards[0]._id);
   }, []);
 
   useEffect(() => {
-    if (boards[0]._id !== 0) {
-      console.log("Empty");
-    }
-    console.log("Full");
+    console.log("Boards are changing 🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉");
+
     setActiveBoardId(boards[0]._id);
-  }, [boards]);
+  }, [boardBeenModified]);
 
   // useEffect(() => {
   //   console.log("boards have been modified: 🌭", boards);
   //   setActiveBoardId(boards[0]._id);
   //   setActiveBoardTitle(boards[0].title);
   // }, [boards]);
-
-  useEffect(() => {
-    if (boards.length > 0) {
-      navigate(`/boards/${activeBoardId}`);
-    }
-  }, [activeBoardId]);
 
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
