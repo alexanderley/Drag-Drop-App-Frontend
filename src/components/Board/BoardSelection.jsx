@@ -27,14 +27,6 @@ export default function BoardSelection() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchBoards();
-  }, []);
-
-  useEffect(() => {
-    setActiveBoardId(boards[0]._id);
-  }, [boards]);
-
-  useEffect(() => {
     if (boards.length > 0) {
       navigate(`/boards/${activeBoardId}`);
     }

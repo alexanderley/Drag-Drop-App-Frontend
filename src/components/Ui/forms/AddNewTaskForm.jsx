@@ -47,14 +47,6 @@ export default function AddNewTaskForm() {
     // check if the active board could be found
     if (indexOfActiveBoard !== -1 && indexOfActiveDraft !== -1) {
       console.log("Board and Draft could be found 👶");
-      // const newData = boards[indexOfActiveBoard].drafts[indexOfActiveDraft];
-
-      // const boardsNewDraft = boards[indexOfActiveBoard].drafts[
-      //   indexOfActiveDraft
-      // ].tasks.push({ _id: "emptyId", title: taskTitle });
-
-      // console.log(boardsNewDraft);
-      // setBoards(boardsNewDraft);
 
       const updatedBoards = [...boards];
 
@@ -64,7 +56,12 @@ export default function AddNewTaskForm() {
 
       updatedTasks.push({ _id: "emptyId", title: taskTitle });
 
-      console.log(updatedTasks);
+      console.log("these are the updated tasks: ", updatedTasks);
+
+      updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks =
+        updatedTasks;
+
+      console.log(updatedBoards);
 
       setBoards(updatedBoards);
     }

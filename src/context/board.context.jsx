@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 const BoardContext = React.createContext();
 
 function BoardProviderWrapper(props) {
+  const [hasBoardsChanged, setHasBoardsChanged] = useState(false);
   const navigate = useNavigate();
-  const [boards, setBoards] = useState([{ _id: "0" }]);
+  const [boards, setBoards] = useState([{ _id: 0 }]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
   const [activeBoardId, setActiveBoardId] = useState("0");
   const [activeBoardTitle, setActiveBoardTitle] = useState("");
@@ -28,13 +29,23 @@ function BoardProviderWrapper(props) {
   };
 
   useEffect(() => {
+    setActiveBoardId(boards[0]._id);
     fetchBoards();
   }, []);
 
   useEffect(() => {
+    if (boards[0]._id !== 0) {
+      console.log("Empty");
+    }
+    console.log("Full");
     setActiveBoardId(boards[0]._id);
-    setActiveBoardTitle(boards[0].title);
   }, [boards]);
+
+  // useEffect(() => {
+  //   console.log("boards have been modified: 🌭", boards);
+  //   setActiveBoardId(boards[0]._id);
+  //   setActiveBoardTitle(boards[0].title);
+  // }, [boards]);
 
   useEffect(() => {
     if (boards.length > 0) {
