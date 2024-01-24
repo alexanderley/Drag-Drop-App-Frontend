@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const BoardContext = React.createContext();
 
 function BoardProviderWrapper(props) {
-  const [boardBeenModified, setboardBeenModified] = useState(false);
+  const [boardsFechted, setBoardsFechted] = useState(false);
   const navigate = useNavigate();
   const [boards, setBoards] = useState([{ _id: 0 }]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
@@ -23,7 +23,7 @@ function BoardProviderWrapper(props) {
       });
       const data = response.data.boards;
       setBoards(data);
-      setboardBeenModified(true);
+      setBoardsFechted(true);
     } catch (err) {
       console.error(err);
     }
@@ -45,7 +45,7 @@ function BoardProviderWrapper(props) {
     console.log("Boards are changing 🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉");
 
     setActiveBoardId(boards[0]._id);
-  }, [boardBeenModified]);
+  }, [boardsFechted]);
 
   // useEffect(() => {
   //   console.log("boards have been modified: 🌭", boards);
