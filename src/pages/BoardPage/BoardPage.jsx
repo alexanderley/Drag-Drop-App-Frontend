@@ -16,9 +16,16 @@ import AddNewTaskForm from "../../components/Ui/forms/AddNewTaskForm";
 
 function BoardPage() {
   const { boardId } = useParams();
+  const navigate = useNavigate();
   const { addNewDraftFormIsVisible, addNewTaskFormIsVisible } =
     useContext(ModalContext);
   const { sideBarIsVisible } = useContext(SidebarContext);
+
+  const { boards } = useContext(BoardContext);
+
+  useEffect(() => {
+    navigate("/boards/77777777777777777777777777777777777");
+  }, [boards]);
 
   console.log("boardId 🛹: ", boardId);
 

@@ -26,6 +26,8 @@ function BoardProviderWrapper(props) {
       const data = response.data.boards;
       setBoards(data);
       setBoardsFechted(true);
+      // navigate(`/boards/${}`);
+      // navigate("/boards/77777777777777777777777777777777777");
     } catch (err) {
       console.error(err);
     }

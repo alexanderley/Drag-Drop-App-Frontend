@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { BoardContext } from "../../context/board.context";
@@ -26,18 +26,20 @@ export default function BoardSelection() {
 
   const navigate = useNavigate();
 
+  // const [intalBoardIdChanged, setInitialBoardIdChanged] = useState(false);
+
   // useEffect(() => {
   //   if (boards.length > 0) {
+  //     console.log("activeBoardId: 👶", activeBoardId);
   //     navigate(`/boards/${activeBoardId}`);
+  //     setInitialBoardIdChanged(true);
   //   }
-  // }, [activeBoardId]);
+  // }, [activeBoardId, boards]);
 
-  useEffect(() => {
-    if (boards.length > 0) {
-      // navigate(`/boards/888`);
-      navigate(`/boards/${activeBoardId}`);
-    }
-  }, [activeBoardId, boards]);
+  // useEffect(() => {
+  //   navigate(`/boards/${boards[0]._id}`);
+
+  // }, [intalBoardIdChanged]);
 
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
