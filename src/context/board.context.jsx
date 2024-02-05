@@ -8,6 +8,7 @@ const BoardContext = React.createContext();
 function BoardProviderWrapper(props) {
   const [boardsFechted, setBoardsFechted] = useState(false);
   const navigate = useNavigate();
+  // const history = useHistory();
   const [boards, setBoards] = useState([{ _id: 0 }]);
   const [activeBoardIndex, setActiveBoardIndex] = useState(0);
   const [activeBoardId, setActiveBoardId] = useState("0");
@@ -16,6 +17,7 @@ function BoardProviderWrapper(props) {
 
   const storedToken = localStorage.getItem("authToken");
 
+  // fetches data from the boards
   const fetchBoards = async () => {
     try {
       const response = await axios.get(`${API_URL}/getBoards`, {
@@ -30,28 +32,12 @@ function BoardProviderWrapper(props) {
   };
 
   useEffect(() => {
-    console.log("set active ID 🎂🎂🎂🎂🎂🎂🎂");
-    if (boards.length > 0) {
-      navigate(`/boards/${activeBoardId}`);
-    }
-  }, [activeBoardId]);
-
-  useEffect(() => {
     fetchBoards();
-    // setActiveBoardId(boards[0]._id);
   }, []);
 
   useEffect(() => {
-    console.log("Boards are changing 🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉🐱‍🐉");
-
     setActiveBoardId(boards[0]._id);
   }, [boardsFechted]);
-
-  // useEffect(() => {
-  //   console.log("boards have been modified: 🌭", boards);
-  //   setActiveBoardId(boards[0]._id);
-  //   setActiveBoardTitle(boards[0].title);
-  // }, [boards]);
 
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);
@@ -64,6 +50,7 @@ function BoardProviderWrapper(props) {
       value={{
         boards,
         setBoards,
+        boardsFechted,
         activeBoardIndex,
         setActiveBoardIndex,
         activeBoardId,

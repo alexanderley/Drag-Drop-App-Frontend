@@ -20,14 +20,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
-          path="/projects"
-          element={
-            <IsPrivate>
-              <ProjectListPage />{" "}
-            </IsPrivate>
-          }
-        />
-        <Route
           path="/boards"
           element={
             <IsPrivate>
@@ -44,7 +36,7 @@ function App() {
           }
         />
 
-        <Route
+        {/* <Route
           path="/projects/:projectId"
           element={
             <IsPrivate>
@@ -62,7 +54,7 @@ function App() {
               <EditProjectPage />{" "}
             </IsPrivate>
           }
-        />
+        /> */}
 
         <Route
           path="/signup"

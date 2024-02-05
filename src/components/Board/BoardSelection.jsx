@@ -26,11 +26,18 @@ export default function BoardSelection() {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   if (boards.length > 0) {
+  //     navigate(`/boards/${activeBoardId}`);
+  //   }
+  // }, [activeBoardId]);
+
   useEffect(() => {
     if (boards.length > 0) {
+      // navigate(`/boards/888`);
       navigate(`/boards/${activeBoardId}`);
     }
-  }, [activeBoardId]);
+  }, [activeBoardId, boards]);
 
   const handleBoardClick = (index) => {
     setActiveBoardId(boards[index]._id);

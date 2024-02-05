@@ -9,6 +9,7 @@ import TasksList from "./TaskList";
 import API_URL from "../../../apiKey";
 import { SidebarContext } from "../../context/sidebar.context";
 import { ModalContext } from "../../context/modal.context";
+import { BoardContext } from "../../context/board.context";
 
 export default function DraftList(props) {
   const [drafts, setDrafts] = useState([]);
@@ -16,31 +17,22 @@ export default function DraftList(props) {
   const { addNewDraftFormIsVisible, setAddNewDraftFormIsVisible } =
     useContext(ModalContext);
 
+  const { boards, boardsFechted, activeBoardIndex } = useContext(BoardContext);
+
   const storedToken = localStorage.getItem("authToken");
 
   const boardId = props.boardId;
-
-  const fetchDrafts = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/getDrafts/${boardId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      });
-      const data = response.data.drafts;
-      setDrafts(data);
-      console.log("Drafts from server: 🐱‍🚀", data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  console.log("probs board id 🤢🌭🌭", boardId);
 
   useEffect(() => {
-    fetchDrafts();
-  }, [props.boardId]);
+    console.log("Drafts get from context 🤷‍♀️", boardsFechted);
+    setDrafts(boards[activeBoardIndex].drafts);
+  }, [boards, boardsFechted, activeBoardIndex]);
 
   useEffect(() => {
     console.log("Draft update 🌹🌹🌹", drafts);
     updateDrafts();
-  }, [drafts]);
+  }, [drafts, boardsFechted]);
 
   const handleDragDrop = (results) => {
     console.log("Results: ", results);
