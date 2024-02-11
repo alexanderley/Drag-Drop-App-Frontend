@@ -22,15 +22,15 @@ export default function DraftList(props) {
   const storedToken = localStorage.getItem("authToken");
 
   const boardId = props.boardId;
-  console.log("probs board id 🤢🌭🌭", boardId);
+  // console.log("probs board id 🤢🌭🌭", boardId);
 
   useEffect(() => {
-    console.log("Drafts get from context 🤷‍♀️", boardsFechted);
+    // console.log("Drafts get from context 🤷‍♀️", boardsFechted);
     setDrafts(boards[activeBoardIndex].drafts);
   }, [boards, boardsFechted, activeBoardIndex]);
 
   useEffect(() => {
-    console.log("Draft update 🌹🌹🌹", drafts);
+    // console.log("Draft update 🌹🌹🌹", drafts);
     updateDrafts();
   }, [drafts, boardsFechted]);
 
@@ -105,7 +105,7 @@ export default function DraftList(props) {
           tasks: draft.tasks.map((task) => ({ _id: task._id })),
         }));
 
-        console.log("Tasks as array of objects: ✨✨😃", updatedDrafts);
+        // console.log("Tasks as array of objects: ✨✨😃", updatedDrafts);
 
         const response = await axios.put(
           `${API_URL}/updateDrafts`,

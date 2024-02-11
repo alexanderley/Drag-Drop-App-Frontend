@@ -21,11 +21,7 @@ function BoardPage() {
     useContext(ModalContext);
   const { sideBarIsVisible } = useContext(SidebarContext);
 
-  const { boards } = useContext(BoardContext);
-
-  useEffect(() => {
-    navigate("/boards/77777777777777777777777777777777777");
-  }, [boards]);
+  const { boards, activeBoardId } = useContext(BoardContext);
 
   console.log("boardId 🛹: ", boardId);
 

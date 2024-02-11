@@ -38,7 +38,6 @@ export default function BoardSelection() {
 
   // useEffect(() => {
   //   navigate(`/boards/${boards[0]._id}`);
-
   // }, [intalBoardIdChanged]);
 
   const handleBoardClick = (index) => {

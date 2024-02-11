@@ -7,11 +7,13 @@ import API_URL from "../../apiKey";
 import "./LoginPage.scss";
 
 import ButtonSquareL from "../components/Ui/ButtonSquareL";
+import { BoardContext } from "../context/board.context";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const { setBoards, activeBoardId } = useContext(BoardContext);
 
   const navigate = useNavigate();
 
@@ -31,24 +33,23 @@ function LoginPage(props) {
       storeToken(response.data.authToken);
       authenticateUser();
 
-      // Redirect to the first of the board elements
       const boardsResponse = await axios.get(`${API_URL}/getBoards`, {
-        headers: { Authorization: `Bearer ${authToken}` },
+        headers: { Authorization: `Bearer ${response.data.authToken}` },
       });
 
+      console.log("REQUEST should work");
       const boards = boardsResponse.data.boards;
-      console.log("These are the boards 🤣", boards);
+
+      console.log("These are the boards 🤣?", boards);
+      setBoards(boards);
+      navigate(`/boards/${boards[0]._id}`);
       if (boards.length > 0) {
-        // If there are boards, navigate to the boards page with the board ID as a parameter
-        // navigate(`/boards/${boards[0].id}`);
-        navigate("/boards");
       } else {
         // Handle the case where there are no boards
         setErrorMessage("No boards found for this user.");
       }
-
-      // navigate("/boards");
     } catch (error) {
+      console.log(error, "Something went wrong");
       const errorDescription = error.response.data.message;
       setErrorMessage(errorDescription);
     }
