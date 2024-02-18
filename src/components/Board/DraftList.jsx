@@ -25,7 +25,7 @@ export default function DraftList(props) {
   // console.log("probs board id 🤢🌭🌭", boardId);
 
   useEffect(() => {
-    // console.log("Drafts get from context 🤷‍♀️", boardsFechted);
+    console.log("Drafts get from context 🤷‍♀️", boardsFechted);
     setDrafts(boards[activeBoardIndex].drafts);
   }, [boards, boardsFechted, activeBoardIndex]);
 
@@ -56,11 +56,13 @@ export default function DraftList(props) {
 
       reordereddraft.splice(destinationIndex, 0, removedDraft);
 
-      return setDrafts(reordereddraft);
+      // return setDrafts(reordereddraft);
+      setDrafts(reordereddraft);
     }
 
     // 2.) add task change functionality
     console.log("task drop", { destination, source });
+    console.log("🚕🚕🚕🚕 Task got dragged");
     const taskSourceIndex = drafts.findIndex(
       (draft) => draft._id === source.droppableId
     );
@@ -69,6 +71,7 @@ export default function DraftList(props) {
       (draft) => draft._id === destination.droppableId
     );
 
+    console.log("newSourceItems: ✨✨", [...drafts], taskSourceIndex);
     const newSourceItems = [...drafts[taskSourceIndex].tasks];
 
     const newDestinationItems =

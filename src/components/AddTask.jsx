@@ -32,7 +32,9 @@ function AddTask(props) {
         // from the ProjectDetailsPage, to refresh the project details
         props.refreshProject();
       })
-      .catch((error) => console.log(error));
+      .catch((error) =>
+        console.log(error, "Something went wrong while adding tasks")
+      );
   };
 
   return (

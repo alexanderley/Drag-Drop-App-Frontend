@@ -40,12 +40,18 @@ export default function BoardSelection() {
   //   navigate(`/boards/${boards[0]._id}`);
   // }, [intalBoardIdChanged]);
 
+  useEffect(() => {
+    console.log("Will be navigated 🧭");
+    navigate(`/boards/${activeBoardId}`);
+  }, [activeBoardId]);
+
   const handleBoardClick = (index) => {
+    console.log("Tab has been clicked on 🦇🦇", boards[index]._id);
     setActiveBoardId(boards[index]._id);
     setActiveBoardIndex(index);
-    // setActiveBoardId(boards[index]._id)
     setActiveBoardTitle(boards[index].title);
-    fetchDrafts();
+    // useNavigate(`boards/${boards[index]._id}`);
+    // fetchDrafts();
   };
 
   const hideClickHandler = () => {

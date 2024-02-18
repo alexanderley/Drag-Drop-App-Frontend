@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import API_URL from "../../../../apiKey";
 import axios from "axios";
@@ -15,9 +15,14 @@ export default function AddNewTaskForm() {
   const { boards, setBoards, activeBoardId, activeDraftId, setActiveDraftId } =
     useContext(BoardContext);
 
+  // useEffect(() => {
+  //   console.log("Boards after adding a task 🎂🎂🎂");
+  // }, [boards]);
+
   const addTaskFormHandler = async (e) => {
     console.log("ID on request 🍺", activeDraftId);
     e.preventDefault();
+    const storedToken = localStorage.getItem("authToken");
 
     // console.log("Open Modal, this is the id: ", _id);
     console.log("Current Boards", boards);
@@ -54,7 +59,26 @@ export default function AddNewTaskForm() {
         ...updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks,
       ];
 
-      updatedTasks.push({ _id: "emptyId", title: taskTitle });
+      // updatedTasks.push({ _id: "emptyId", title: taskTitle });
+
+      // Make an axios request to the database
+      try {
+        const requestBody = { draftId: activeDraftId, title: taskTitle };
+        const response = await axios.post(`${API_URL}/addTask`, requestBody, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
+        const data = response.data;
+        console.log(data, "This is the data from the server: 🤷‍♀️");
+        const taskFromServer = response.data.newTask;
+        console.log("Task from Server: 🤞🤞", taskFromServer);
+        // Push the task to the array
+        updatedTasks.push(taskFromServer);
+      } catch (err) {
+        console.err(
+          err,
+          "Something went wrong while adding task to the draft on server ❌"
+        );
+      }
 
       console.log("these are the updated tasks: ", updatedTasks);
 

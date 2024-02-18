@@ -13,7 +13,8 @@ function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const { setBoards, activeBoardId } = useContext(BoardContext);
+  const { setBoards, activeBoardId, setActiveBoardTitle } =
+    useContext(BoardContext);
 
   const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ function LoginPage(props) {
       console.log("These are the boards 🤣?", boards);
       setBoards(boards);
       navigate(`/boards/${boards[0]._id}`);
+      setActiveBoardTitle(`${boards[0].title}`);
       if (boards.length > 0) {
       } else {
         // Handle the case where there are no boards
