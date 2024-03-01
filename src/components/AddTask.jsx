@@ -30,7 +30,8 @@ function AddTask(props) {
 
         // Invoke the callback function coming through the props
         // from the ProjectDetailsPage, to refresh the project details
-        props.refreshProject();
+
+        // props.refreshProject();
       })
       .catch((error) =>
         console.log(error, "Something went wrong while adding tasks")

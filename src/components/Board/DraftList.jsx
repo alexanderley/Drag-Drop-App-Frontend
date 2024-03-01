@@ -62,7 +62,8 @@ export default function DraftList(props) {
 
     // 2.) add task change functionality
     console.log("task drop", { destination, source });
-    console.log("🚕🚕🚕🚕 Task got dragged");
+    console.log("Task got dragged");
+    console.log("😶‍🌫️ Draft Id: ", drafts[0]._id);
     const taskSourceIndex = drafts.findIndex(
       (draft) => draft._id === source.droppableId
     );
@@ -71,7 +72,7 @@ export default function DraftList(props) {
       (draft) => draft._id === destination.droppableId
     );
 
-    console.log("newSourceItems: ✨✨", [...drafts], taskSourceIndex);
+    // console.log("newSourceItems: ✨✨", [...drafts], taskSourceIndex);
     const newSourceItems = [...drafts[taskSourceIndex].tasks];
 
     const newDestinationItems =
