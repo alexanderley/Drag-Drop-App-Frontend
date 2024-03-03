@@ -22,15 +22,19 @@ export default function DraftList(props) {
   const storedToken = localStorage.getItem("authToken");
 
   const boardId = props.boardId;
-  // console.log("probs board id 🤢🌭🌭", boardId);
 
   useEffect(() => {
     console.log("Drafts get from context 🤷‍♀️", boardsFechted);
+
+    if (boards.length === 0) return;
+
     setDrafts(boards[activeBoardIndex].drafts);
   }, [boards, boardsFechted, activeBoardIndex]);
 
   useEffect(() => {
     // console.log("Draft update 🌹🌹🌹", drafts);
+
+    if (boards.length === 0) return;
     updateDrafts();
   }, [drafts, boardsFechted]);
 

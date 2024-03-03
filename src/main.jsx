@@ -15,9 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <Router>
-    <AuthProviderWrapper>
-      <ThemeProviderWrapper>
-        <BoardProviderWrapper>
+    <BoardProviderWrapper>
+      <AuthProviderWrapper>
+        <ThemeProviderWrapper>
           <ViewportProviderWrapper>
             <SidebarProviderWrapper>
               <ModalProviderWrapper>
@@ -25,8 +25,8 @@ root.render(
               </ModalProviderWrapper>
             </SidebarProviderWrapper>
           </ViewportProviderWrapper>
-        </BoardProviderWrapper>
-      </ThemeProviderWrapper>
-    </AuthProviderWrapper>
+        </ThemeProviderWrapper>
+      </AuthProviderWrapper>
+    </BoardProviderWrapper>
   </Router>
 );

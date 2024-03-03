@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 const ModalContext = createContext();
 
@@ -6,6 +6,12 @@ function ModalProviderWrapper({ children }) {
   const [addNewTaskFormIsVisible, setAddNewTaskFormIsVisible] = useState(false);
   const [addNewDraftFormIsVisible, setAddNewDraftFormIsVisible] =
     useState(false);
+  const [addNewBoardFormIsVisible, setAddNewBoardFormIsVisible] =
+    useState(false);
+
+  useEffect(() => {
+    console.log("Modalvisible: ", addNewBoardFormIsVisible);
+  }, [addNewBoardFormIsVisible]);
 
   return (
     <ModalContext.Provider
@@ -14,6 +20,8 @@ function ModalProviderWrapper({ children }) {
         setAddNewTaskFormIsVisible,
         addNewDraftFormIsVisible,
         setAddNewDraftFormIsVisible,
+        addNewBoardFormIsVisible,
+        setAddNewBoardFormIsVisible,
       }}
     >
       {children}

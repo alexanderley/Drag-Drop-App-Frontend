@@ -16,22 +16,16 @@ import AddNewTaskForm from "../../components/Ui/forms/AddNewTaskForm";
 
 function BoardPage() {
   const { boardId } = useParams();
-  const navigate = useNavigate();
   const { addNewDraftFormIsVisible, addNewTaskFormIsVisible } =
     useContext(ModalContext);
   const { sideBarIsVisible } = useContext(SidebarContext);
 
-  const { boards, activeBoardId } = useContext(BoardContext);
-
   console.log("boardId 🛹: ", boardId);
-
-  const [sideMenuVisible, setSideMenuVisible] = useState(true);
 
   return (
     <div className="boardPageWrapper">
       {addNewDraftFormIsVisible ? <AddNewDraftForm /> : ""}
       {addNewTaskFormIsVisible ? <AddNewTaskForm /> : ""}
-      {/* {addNewTaskFormIsVisible ? <AddNewDraftForm /> : ""} */}
       <TopNavigation />
       <div
         className={`boardContainer ${
@@ -41,7 +35,6 @@ function BoardPage() {
         <BoardSelection />
         <DraftList boardId={boardId} />
       </div>
-      {/* <button className="makeVisibleButton">Make Visible</button> */}
     </div>
   );
 }

@@ -23,7 +23,17 @@ function BoardProviderWrapper(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const data = response.data.boards;
+
+      // Guard clause will prevent Board from setting if there is no data
+      if (boards[0]._id === 0) {
+        return;
+      }
+      // if (!data || data.length === 0) {
+      //   console.error("No data");
+      //   return;
+      // }
       setBoards(data);
+      console.log("this is the dara  🏓:", data);
       setBoardsFechted(true);
     } catch (err) {
       console.error(err);
@@ -33,6 +43,10 @@ function BoardProviderWrapper(props) {
   useEffect(() => {
     fetchBoards();
   }, []);
+
+  useEffect(() => {
+    console.log("Show boards: ✨", boards);
+  }, [boards]);
 
   useEffect(() => {
     setActiveBoardId(boards[0]._id);

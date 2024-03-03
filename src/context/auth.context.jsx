@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import API_URL from "../../apiKey";
+import { BoardContext } from "./board.context";
 
 const AuthContext = React.createContext();
 
@@ -8,6 +9,7 @@ function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const { setBoards } = useContext(BoardContext);
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
@@ -53,6 +55,7 @@ function AuthProviderWrapper(props) {
   };
 
   const logOutUser = () => {
+    setBoards([{ _id: 0 }]);
     removeToken();
     authenticateUser();
   };
