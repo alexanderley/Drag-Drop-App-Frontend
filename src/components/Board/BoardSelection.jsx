@@ -20,7 +20,7 @@ export default function BoardSelection() {
     fetchBoards,
   } = useContext(BoardContext);
   const { sideBarIsVisible, setVisibilityHandler } = useContext(SidebarContext);
-  const { setAddNewBoardFormIsVisible } = useContext(ModalContext);
+  const { addNewBoardFormIsVisible, setAddNewBoardFormIsVisible } = useContext(ModalContext);
 
   const { boardId } = useParams();
   console.log("boardId 🛹: ", boardId);
@@ -51,12 +51,12 @@ export default function BoardSelection() {
 
   return (
     <>
-      {setAddNewBoardFormIsVisible ? <AddNewBoardForm /> : ""}
       <div
         className={`boardsSelection ${
           !sideBarIsVisible ? "sideBarHidden" : "sideBarVisible"
         }`}
       >
+           {addNewBoardFormIsVisible ? <AddNewBoardForm /> : ""}
         <div className="topSection">
           <h4>All Boards(3)</h4>
           {boards
