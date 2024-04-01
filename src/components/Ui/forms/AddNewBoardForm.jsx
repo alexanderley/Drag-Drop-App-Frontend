@@ -8,7 +8,7 @@ import API_URL from "../../../../apiKey";
 import { BoardContext } from "../../../context/board.context";
 
 export default function AddNewBoardForm() {
-  const { setAddNewBoardIsVisible } = useContext(ModalContext);
+  const { setAddNewBoardFormIsVisible } = useContext(ModalContext);
   const { fetchBoards } = useContext(BoardContext);
   const [boardTitle, setBoardTitle] = useState("");
 
@@ -29,10 +29,12 @@ export default function AddNewBoardForm() {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const data = response.data;
+      console.log("✨✨✨✨✨✨✨");
       console.log("axiosData: ", data);
-      setAddNewBoardIsVisible(false);
+
+      setAddNewBoardFormIsVisible(false);
+      console.log("😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️");
       boardTitle("");
-      // props.fetchBoards();
       fetchBoards();
     } catch (err) {
       console.error(err);

@@ -18,7 +18,7 @@ function BoardProviderWrapper(props) {
 
   // fetches data from the boards
   const fetchBoards = async () => {
-    console.log("Fetch is going on..............");
+    console.log("🐧 Fetch is going on..............");
     try {
       const response = await axios.get(`${API_URL}/getBoards`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -71,7 +71,6 @@ function BoardProviderWrapper(props) {
         setActiveBoardId,
         activeBoardTitle,
         setActiveBoardTitle,
-        fetchBoards,
         activeDraftId,
         setActiveDraftId,
         fetchBoards,
