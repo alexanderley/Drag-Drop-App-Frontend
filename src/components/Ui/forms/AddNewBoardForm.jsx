@@ -29,13 +29,9 @@ export default function AddNewBoardForm() {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const data = response.data;
-      console.log("✨✨✨✨✨✨✨");
       console.log("axiosData: ", data);
-
       setAddNewBoardFormIsVisible(false);
-      console.log("😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️😶‍🌫️");
-      boardTitle("");
-      fetchBoards();
+      setBoardTitle("");
     } catch (err) {
       console.error(err);
     }

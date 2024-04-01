@@ -28,7 +28,11 @@ export default function DraftList(props) {
 
     if (boards.length === 0) return;
 
-    setDrafts(boards[activeBoardIndex].drafts);
+    console.log(
+      "This is the active Boards Drafts ❌❌❌",
+      boards[activeBoardIndex]
+    );
+    setDrafts(boards[activeBoardIndex]?.drafts);
   }, [boards, boardsFechted, activeBoardIndex]);
 
   useEffect(() => {
@@ -76,7 +80,6 @@ export default function DraftList(props) {
       (draft) => draft._id === destination.droppableId
     );
 
-    // console.log("newSourceItems: ✨✨", [...drafts], taskSourceIndex);
     const newSourceItems = [...drafts[taskSourceIndex].tasks];
 
     const newDestinationItems =

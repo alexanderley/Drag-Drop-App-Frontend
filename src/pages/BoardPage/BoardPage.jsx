@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BoardContext } from "../../context/board.context";
 
 import { useNavigate, useParams } from "react-router-dom";
 
 import "./BoardPage.scss";
+
+import { ModalContext } from "../../context/modal.context";
+import { SidebarContext } from "../../context/sidebar.context";
+import { BoardContext } from "../../context/board.context";
 
 import DraftList from "../../components/Board/DraftList";
 import BoardSelection from "../../components/Board/BoardSelection";
 import TopNavigation from "../../components/TopNavigation/TopNavigation";
 
 import AddNewDraftForm from "../../components/Ui/forms/AddNewDraftForm";
-import { ModalContext } from "../../context/modal.context";
-import { SidebarContext } from "../../context/sidebar.context";
+
 import AddNewTaskForm from "../../components/Ui/forms/AddNewTaskForm";
 
 function BoardPage() {
@@ -19,6 +21,16 @@ function BoardPage() {
   const { addNewDraftFormIsVisible, addNewTaskFormIsVisible } =
     useContext(ModalContext);
   const { sideBarIsVisible } = useContext(SidebarContext);
+
+  const { boards, setBoards, activeBoardId, setActiveBoardId } =
+    useContext(BoardContext);
+
+  useEffect(() => {
+    if (boardId === "0" && boards.length > 0) {
+      console.log("The active board id is 🐧: ", activeBoardId);
+      setActiveBoardId("777");
+    }
+  }, [boardId, boards, activeBoardId]);
 
   console.log("boardId 🛹: ", boardId);
 

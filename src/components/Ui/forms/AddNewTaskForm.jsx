@@ -15,10 +15,6 @@ export default function AddNewTaskForm() {
   const { boards, setBoards, activeBoardId, activeDraftId, setActiveDraftId } =
     useContext(BoardContext);
 
-  // useEffect(() => {
-  //   console.log("Boards after adding a task 🎂🎂🎂");
-  // }, [boards]);
-
   const addTaskFormHandler = async (e) => {
     console.log("ID on request 🍺", activeDraftId);
     e.preventDefault();
@@ -37,7 +33,6 @@ export default function AddNewTaskForm() {
     const draftsOfActiveBoard = boards[indexOfActiveBoard].drafts;
     console.log("Drafts of active Board:", draftsOfActiveBoard);
 
-    // const indexOfActiveDraft = draftsOfActiveBoard.indexOf(activeDraftId);
     const indexOfActiveDraft = draftsOfActiveBoard.findIndex(
       (draft) => draft._id === activeDraftId
     );
@@ -59,9 +54,6 @@ export default function AddNewTaskForm() {
         ...updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks,
       ];
 
-      // updatedTasks.push({ _id: "emptyId", title: taskTitle });
-
-      // Make an axios request to the database
       try {
         const requestBody = { draftId: activeDraftId, title: taskTitle };
         const response = await axios.post(`${API_URL}/addTask`, requestBody, {
@@ -89,59 +81,7 @@ export default function AddNewTaskForm() {
 
       setBoards(updatedBoards);
     }
-
-    // const storedToken = localStorage.getItem("authToken");
-
-    // try {
-    //   const requestBody = { title: taskTitle, taskId: activeDraftId };
-    //   const response = await axios.post(`${API_URL}/addTask`, requestBody, {
-    //     headers: { Authorization: `Bearer ${storedToken}` },
-    //   });
-    //   const data = response.data;
-    //   setAddNewDraftFormIsVisible(false);
-    //   setActiveDraftId("");
-    // } catch (err) {
-    //   console.error(err);
-    // }
-    // console.log("New Task send to the server!");
   };
-
-  // const addTaskFormHandler = async (e) => {
-  //   e.preventDefault();
-
-  //   const indexOfActiveBoard = boards.findIndex(
-  //     (board) => board._id === activeBoardId
-  //   );
-
-  //   const draftsOfActiveBoard = boards[indexOfActiveBoard].drafts;
-  //   const indexOfActiveDraft = draftsOfActiveBoard.findIndex(
-  //     (draft) => draft._id === activeDraftId
-  //   );
-
-  //   // check if the active board could be found
-  //   if (indexOfActiveBoard !== -1 && indexOfActiveDraft !== -1) {
-  //     // Create a copy of the current state
-  //     const updatedBoards = [...boards];
-
-  //     // Create a copy of the tasks array in the selected draft
-  //     const updatedTasks = [
-  //       ...updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks,
-  //     ];
-
-  //     // Add the new task to the copied tasks array
-  //     updatedTasks.push({ _id: "emptyId", title: taskTitle });
-
-  //     // Update the tasks array in the copied draft
-  //     updatedBoards[indexOfActiveBoard].drafts[indexOfActiveDraft].tasks =
-  //       updatedTasks;
-
-  //     // Update the state with the modified copy
-  //     setBoards(updatedBoards);
-  //   }
-
-  //   setAddNewDraftFormIsVisible(false);
-  //   setActiveDraftId("");
-  // };
 
   const handleTaskTitleChange = (e) => {
     setTaskTitle(e.target.value);

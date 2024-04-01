@@ -29,10 +29,6 @@ function BoardProviderWrapper(props) {
       if (boards[0]._id === 0) {
         return;
       }
-      // if (!data || data.length === 0) {
-      //   console.error("No data");
-      //   return;
-      // }
       setBoards(data);
       console.log("this is the dara  🏓:", data);
       setBoardsFechted(true);

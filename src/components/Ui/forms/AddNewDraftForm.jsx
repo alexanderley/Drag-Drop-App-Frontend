@@ -7,10 +7,12 @@ import Modal from "../modals/Modal";
 import ButtonSecondary from "../../Ui/ButttonSecondaryViolet";
 import { useParams } from "react-router-dom";
 import { ModalContext } from "../../../context/modal.context";
+import { BoardContext } from "../../../context/board.context";
 
 export default function AddNewDraftForm() {
   const { boardId } = useParams();
   const { setAddNewDraftFormIsVisible } = useContext(ModalContext);
+  const { fetchBoards } = useContext(BoardContext);
   const [draftTitle, setDraftTitle] = useState("");
 
   const addDraftFormSubHandler = async (e) => {
@@ -27,6 +29,7 @@ export default function AddNewDraftForm() {
       setAddNewDraftFormIsVisible(false);
 
       console.log("axiosData: ", data);
+      fetchBoards();
     } catch (err) {
       console.error(err);
     }
