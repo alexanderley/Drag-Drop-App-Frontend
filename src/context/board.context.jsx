@@ -24,11 +24,13 @@ function BoardProviderWrapper(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
       const data = response.data.boards;
+      console.log("fetching data", data);
 
       // Guard clause will prevent Board from setting if there is no data
-      if (boards[0]._id === 0) {
-        return;
-      }
+      // if (boards[0]._id === 0) {
+      //   return;
+      // }
+
       setBoards(data);
       console.log("this is the dara  🏓:", data);
       setBoardsFechted(true);
@@ -38,6 +40,7 @@ function BoardProviderWrapper(props) {
   };
 
   useEffect(() => {
+    console.log("Fetching again the boards.........", boards);
     fetchBoards();
   }, []);
 

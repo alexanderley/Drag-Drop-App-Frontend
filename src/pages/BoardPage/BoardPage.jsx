@@ -22,13 +22,25 @@ function BoardPage() {
     useContext(ModalContext);
   const { sideBarIsVisible } = useContext(SidebarContext);
 
-  const { boards, setBoards, activeBoardId, setActiveBoardId } =
-    useContext(BoardContext);
+  const {
+    boards,
+    setBoards,
+    activeBoardId,
+    setActiveBoardId,
+    activeBoardIndex,
+  } = useContext(BoardContext);
 
   useEffect(() => {
     if (boardId === "0" && boards.length > 0) {
-      console.log("The active board id is 🐧: ", activeBoardId);
+      console.log(
+        "The active board id is 🐧: ",
+        activeBoardId,
+        boards[activeBoardIndex]._id
+      );
       setActiveBoardId("777");
+      setActiveBoardId("660b202d3384ab1f161e1940");
+      // console.log(activeBoardIndex);
+      // setActiveBoardId(boards[activeBoardIndex]._id);
     }
   }, [boardId, boards, activeBoardId]);
 
