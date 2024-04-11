@@ -9,7 +9,7 @@ import { BoardContext } from "../../../context/board.context";
 
 export default function AddNewBoardForm() {
   const { setAddNewBoardFormIsVisible } = useContext(ModalContext);
-  const { fetchBoards } = useContext(BoardContext);
+  const { boards, setBoards, fetchBoards } = useContext(BoardContext);
   const [boardTitle, setBoardTitle] = useState("");
 
   useEffect(() => {
@@ -28,10 +28,17 @@ export default function AddNewBoardForm() {
       const response = await axios.post(`${API_URL}/addBoard`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
-      const data = response.data;
+      const data = await response.data;
       console.log("axiosData: ", data);
+      console.log("This is the board 🏓🏓", data.board);
+      const newBoard = data.board;
       setAddNewBoardFormIsVisible(false);
       setBoardTitle("");
+
+      const newBoards = [...boards];
+      newBoards.push(newBoard);
+
+      // setBoards(newBoard);
     } catch (err) {
       console.error(err);
     }
